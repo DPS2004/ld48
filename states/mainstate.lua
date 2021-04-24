@@ -6,6 +6,8 @@ function st.init()
   
   
   st.rock = em.init("rock",{x=100,y=400})
+  st.rock2 = em.init("rock",{x=100,y=440})
+  st.rock3 = em.init("rock",{x=140,y=440})
   
   st.camera = {x=0,y=0,shake=0}
   st.cx = 0
