@@ -33,7 +33,7 @@ function ezanim.newanim(temp)
   return a
 end
 
-function ezanim.animupdate(a)
+function ezanim.update(a)
   a.time = a.time + dt
   if a.temp.s ~= 0 then
     if a.time >= a.temp.s then
@@ -53,7 +53,7 @@ function ezanim.animupdate(a)
   end
 end
 
-function ezanim.animdraw(a,x,y,r,sx,sy,ox,oy,kx,ky)
+function ezanim.draw(a,x,y,r,sx,sy,ox,oy,kx,ky)
   x = x or 0
   y = y or 0
   r = r or 0
@@ -73,7 +73,7 @@ function ezanim.animdraw(a,x,y,r,sx,sy,ox,oy,kx,ky)
     love.graphics.draw(a.temp.img,quad,x,y,r,sx,sy,ox,oy,kx,ky)
   end
 end
-function ezanim.resetanim(a)
+function ezanim.reset(a)
   a.f=1
   a.time=0
 end

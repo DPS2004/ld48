@@ -17,7 +17,7 @@ function love.load()
 love.graphics.setDefaultFilter("nearest", "nearest")
   love.graphics.setFont(font)
   -- accurate deltatime
-  acdelt = true
+  acdelt = false
 
   -- import libraries
   
@@ -105,7 +105,11 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     templateguy = love.graphics.newImage("assets/templateguy.png")
     
   }
-
+  
+  -- make templates
+  templates = {
+    drillmin = ez.newtemplate("player/drillmin.png",31,2,true)
+  }
 
   --setup input
   ctrls = {
@@ -140,10 +144,11 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   newswap = false
   states = {
     template = require "states.template",
+    mainstate = require "states.mainstate",
   }
 
   gs.registerEvents()
-  gs.switch(states.template)
+  gs.switch(states.mainstate)
 end
 
 function love.textinput(t)
