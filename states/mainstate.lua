@@ -1,6 +1,7 @@
 local st = {}
 function st.init()
-  st.player = em.init("drillmin",{x=100,y=100})
+  print("mainstate init")
+  st.player = em.init("drillmin",{x=200,y=0})
   st.border = em.init("border",{x=0,y=0})
   st.bg = em.init("bg",{x=0,y=0})
   
@@ -9,14 +10,12 @@ function st.init()
   st.rock2 = em.init("rock",{x=100,y=440})
   st.rock3 = em.init("rock",{x=140,y=440})
   
-  st.camera = {x=0,y=0,shake=0}
+  st.camera = {x=0,y=64,shake=0}
   st.cx = 0
-  st.cy = 0
+  st.cy = 64
 end
 
-function st.enter(prev)
 
-end
 
 
 function st.leave()
@@ -30,11 +29,16 @@ end
 
 
 function st.update()
+  if not st.player then
+    print("could not find player")
+    st.enter()
+  end
 
   st.camera.shake = 0
   if not paused then
     
     flux.update(1)
+    --print("mainstate update")
     em.update(dt)
     
     st.camera.y = 64-st.player.y

@@ -1,11 +1,20 @@
 local st = {}
 function st.init()
-
+  st.border = em.init("border",{x=0,y=0})
+  st.bg = em.init("bg",{x=0,y=0})
+  st.dmcutscene = em.init("dmcutscene",{x=230,y=-100})
+  st.volcano = em.init("volcano",{x=180,y=-366})
+  st.status = "calm"
+  
+  
+  
+  st.camera = {x=0,y=0,shake=0}
+  st.cx = 0
+  st.cy = 240
 end
 
 function st.enter(prev)
-  st.i=0
-  st.pstext = loc.get("pressspace")
+
 end
 
 
@@ -20,45 +29,66 @@ end
 
 
 function st.update()
-  if not paused then
-    st.i = st.i + 1
 
-    if st.i %2 == 0 then
-      local nc = em.init("titleparticle",math.random(-8,408),-8)
-      nc.dx = (math.random() *2) -1
-      nc.dy = 2+ math.random()*2
+  st.camera.shake = 0
+  if not paused then
+    if maininput:pressed("accept") then
+      st.status="eruptstart"
+      st.volcano.canim = "erupt"
+      st.dmcutscene.canim = "grabdrill"
+      
+      
+      
     end
     flux.update(1)
     em.update(dt)
-    if maininput:pressed("accept") or maininput:pressed("mouse1") then
-      print(love.filesystem.getSaveDirectory())
-      helpers.swap(states.songselect)
+    
+    st.border.update(1)
+    st.bg.update(1)  -- cringe and hacky workaround :)
+    
+    if st.finished then
+            cs.border.delete =true
+      cs.bg.delete = true
+      
+      cs = bs.load("mainstate")
+      cs.cy = 64
+      --cs.bg.y = 64
+      
+      
+
+      
+      cs.init()
+      st.bg.update(1)
+      cs.bg.y = 64
+      cs.border.y = 64
+      
+      print("switching")
+      st.finished = false
     end
   end
 end
 
+function st.getshake()
+  local shake = ((0 - st.camera.shake) + (math.random() * (st.camera.shake * 2)))
+  return shake
+end
+
 
 function st.draw()
-    
-  love.graphics.setFont(font1)
+
   --push:start()
   shuv.start()
   love.graphics.setColor(1,1,1)
 
   love.graphics.rectangle("fill",0,0,gameWidth,gameHeight)
-  
 
-  em.draw()
-  love.graphics.draw(sprites.title.logo,32,32+math.sin(st.i*0.03)*10) -- TODO: actually animate this
-  for a=128,130 do
-    for b=155,157 do
-      love.graphics.print(st.pstext,a,b)
-    end
-  end
-  love.graphics.setColor(0,0,0)
-  love.graphics.print(st.pstext,129,156)
   love.graphics.setColor(1,1,1)
+  
+  em.draw()
+
+
   shuv.finish()
+
 end
 
 

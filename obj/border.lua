@@ -10,7 +10,11 @@ local obj = {
 
 function obj.update(dt)
   obj.i = obj.i + dt
-  obj.y = cs.cy % -240
+  if cs.cy <= 0 then
+    obj.y = cs.cy % -240
+  else
+    obj.y = cs.cy
+  end
 end
 
 

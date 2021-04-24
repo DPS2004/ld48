@@ -2,7 +2,7 @@ function love.load()
   dt = 1
 
   gamename = "ld48"
-
+  
   pressed = 0
   mx,my = 0,0
   ispush = false
@@ -36,7 +36,10 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   helpers = require "lib.helpers"
 
   -- gamestate, manages gamestates
-  gs = require "lib.gamestate"
+  gs = require "lib.gamestatestripped"
+  
+  -- how dare i want a simple library
+  bs = require "lib.basestate"
 
   -- baton, manages input handling
   baton = require "lib.baton"
@@ -98,14 +101,20 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   push:setBorderColor{0,0,0}
   love.window.setTitle(gamename)
   paused = false
-
+  
+  
+  frameadvance = false
 
   --load sprites
   sprites = {
     templateguy = love.graphics.newImage("assets/templateguy.png"),
     border = love.graphics.newImage("assets/border.png"),
     rock = love.graphics.newImage("assets/rock.png"),
-    bg = love.graphics.newImage("assets/bg.png")
+    bg = love.graphics.newImage("assets/bg.png"),
+    title = {
+      base = love.graphics.newImage("assets/title/base.png"),
+      blades = love.graphics.newImage("assets/title/blades.png")
+    }
     
   }
   
@@ -115,6 +124,12 @@ love.graphics.setDefaultFilter("nearest", "nearest")
       down = ez.newtemplate("player/down.png",31,2,true),
       left = ez.newtemplate("player/left.png",31,2,true),
       right = ez.newtemplate("player/right.png",31,2,true),
+      wateringcan = ez.newtemplate("player/wateringcan.png",64,2,true),
+      grabdrill = ez.newtemplate("player/grabdrill.png",64,4,false),
+    },
+    volcano = {
+      idle = ez.newtemplate("title/idle.png", 32, 4, false),
+      erupt = ez.newtemplate("title/erupt.png", 32, 4, false),
     }
   }
 
@@ -127,6 +142,9 @@ love.graphics.setDefaultFilter("nearest", "nearest")
         accept = {"key:space", "key:return", "button:a"},
         back = {"key:escape", "button:b"},
         f5 = {"key:f5"},
+        k1 = {"key:1"},
+        k2 = {"key:2"},
+        
         
         mouse1 = {"mouse:1"},
         mouse2 = {"mouse:2"},
@@ -149,13 +167,11 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   -- init states
   toswap = nil
   newswap = false
-  states = {
-    template = require "states.template",
-    mainstate = require "states.mainstate",
-  }
-
-  gs.registerEvents()
-  gs.switch(states.mainstate)
+  bs.new("template")
+  bs.new("mainstate")
+  bs.new("title")
+  cs = bs.load("title")
+  cs.init()
 end
 
 function love.textinput(t)
@@ -165,31 +181,29 @@ end
 function love.update(d)
   maininput:update()
   lovebird.update()
-  mouseX, mouseY = love.mouse.getPosition()
-  mouseX = mouseX / 2
-  mouseY = mouseY / 2
-  cs = gs.current()
-  shuv.check()
-  if not acdelt then
-    dt = 1
-  else
-    dt = d * 60
-  end
-  if dt >=2 then
-    dt = 2
-  end
-  if paused then
-    if cs.source then
-      cs.source:update()
+  if frameadvance == false or maininput:pressed("k1") or maininput:down("k2") then
+    
+    mouseX, mouseY = love.mouse.getPosition()
+    mouseX = mouseX / 2
+    mouseY = mouseY / 2
+
+    shuv.check()
+    if not acdelt then
+      dt = 1
+    else
+      dt = d * 60
     end
-    print("this should not happen")
-    em.update(dt) -- for text boxes
+    if dt >=2 then
+      dt = 2
+    end
+    cs.update(dt)
+    --print(tinput)
   end
-  --print(tinput)
-  
 end
 
-
+function love.draw()
+  cs.draw()
+end
 
 
 function love.resize(w, h)
