@@ -103,6 +103,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   paused = false
   
   
+  cameraheight = 94
+  
   frameadvance = false
 
   --load sprites
@@ -113,7 +115,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     bg = love.graphics.newImage("assets/bg.png"),
     title = {
       base = love.graphics.newImage("assets/title/base.png"),
-      blades = love.graphics.newImage("assets/title/blades.png")
+      blades = love.graphics.newImage("assets/title/blades.png"),
+      ground = love.graphics.newImage("assets/title/ground.png")
     }
     
   }

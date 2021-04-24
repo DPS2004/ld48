@@ -10,9 +10,9 @@ function st.init()
   st.rock2 = em.init("rock",{x=100,y=440})
   st.rock3 = em.init("rock",{x=140,y=440})
   
-  st.camera = {x=0,y=64,shake=0}
+  st.camera = {x=0,y=cameraheight,shake=0}
   st.cx = 0
-  st.cy = 64
+  st.cy = cameraheight
 end
 
 
@@ -34,14 +34,14 @@ function st.update()
     st.enter()
   end
 
-  st.camera.shake = 0
+  --st.camera.shake = 0
   if not paused then
     
     flux.update(1)
     --print("mainstate update")
     em.update(dt)
     
-    st.camera.y = 64-st.player.y
+    st.camera.y = cameraheight-st.player.y
     st.cx = st.camera.x
     st.cy = st.camera.y -- TODO: camera shake
     st.border.update(1)

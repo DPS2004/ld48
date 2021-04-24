@@ -30,7 +30,7 @@ end
 
 function st.update()
 
-  st.camera.shake = 0
+  --st.camera.shake = 0
   if not paused then
     if maininput:pressed("accept") then
       st.status="eruptstart"
@@ -40,6 +40,9 @@ function st.update()
       
       
     end
+    if st.status == "eruptstart" then
+      st.camera.shake = st.camera.shake + 0.05
+    end
     flux.update(1)
     em.update(dt)
     
@@ -47,21 +50,24 @@ function st.update()
     st.bg.update(1)  -- cringe and hacky workaround :)
     
     if st.finished then
+      local retainshake = cs.camera.shake
             cs.border.delete =true
       cs.bg.delete = true
       
       cs = bs.load("mainstate")
-      cs.cy = 64
+      cs.cy = cameraheight
       --cs.bg.y = 64
+      
       
       
 
       
       cs.init()
       st.bg.update(1)
-      cs.bg.y = 64
-      cs.border.y = 64
-      
+      cs.bg.y = cameraheight
+      cs.border.y = cameraheight
+      cs.camera.shake = retainshake
+      flux.to(cs.camera,60,{shake=0}):ease("linear")
       print("switching")
       st.finished = false
     end

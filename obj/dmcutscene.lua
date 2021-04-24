@@ -32,7 +32,7 @@ function obj.update(dt)
       flux.to(new,30,{r=-360}):ease("linear")
       
       flux.to(new,30,{x=200}):ease("inoutSine")
-      flux.to(cs,30,{cy=64}):ease("linear")
+      flux.to(cs,30,{cy=cameraheight}):ease("linear")
       
       flux.to(new,15,{y=new.y-40}):ease("outSine"):oncomplete(function() 
         flux.to(new,15,{y=0}):ease("inSine"):oncomplete(function()
