@@ -1,6 +1,9 @@
 local st = {}
 function st.init()
   st.player = em.init("drillmin",{x=100,y=100})
+  st.camera = {x=0,y=0,shake=0}
+  st.cx = 0
+  st.cy = 0
 end
 
 function st.enter(prev)
@@ -20,8 +23,8 @@ end
 
 function st.update()
   if not paused then
-
-    -- do things here
+    st.cx = st.camera.x
+    st.cy = st.camera.y -- TODO: camera shake
     flux.update(1)
     em.update(dt)
   end

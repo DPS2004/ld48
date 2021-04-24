@@ -102,13 +102,14 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 
   --load sprites
   sprites = {
-    templateguy = love.graphics.newImage("assets/templateguy.png")
+    templateguy = love.graphics.newImage("assets/templateguy.png"),
+    border = love.graphics.newImage("assets/border.png")
     
   }
   
   -- make templates
   templates = {
-    drillmin = ez.newtemplate("player/drillmin.png",31,2,true)
+    drillmin = ez.newtemplate("player/drillmin.png",31,2,true),
   }
 
   --setup input

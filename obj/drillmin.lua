@@ -10,13 +10,24 @@ local obj = {
 
 
 function obj.update(dt)
+  
+  
+  if maininput:down("left") then
+    obj.r = obj.r - 2
+  end
+  if maininput:down("right") then
+    obj.r = obj.r + 2
+  end
+  local rret = helpers.rotate(-3,obj.r,obj.x,obj.y)
+  obj.x = rret[1]
+  obj.y = rret[2]
+  
   ez.update(obj.anim)
-  obj.r = obj.r + dt
 end
 
 
 function obj.draw()
-  ez.draw(obj.anim,obj.x,obj.y,math.rad(obj.r),2,2,15.5,42)
+  ez.draw(obj.anim,obj.x+cs.cx,obj.y+cs.cy,math.rad(obj.r),2,2,15.5,30)
   
 end
 
