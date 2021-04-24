@@ -103,7 +103,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   --load sprites
   sprites = {
     templateguy = love.graphics.newImage("assets/templateguy.png"),
-    border = love.graphics.newImage("assets/border.png")
+    border = love.graphics.newImage("assets/border.png"),
+    bg = love.graphics.newImage("assets/bg.png")
     
   }
   
