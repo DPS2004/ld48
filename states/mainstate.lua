@@ -4,6 +4,7 @@ function st.init()
   st.player = em.init("drillmin",{x=200,y=0})
   st.border = em.init("border",{x=0,y=0})
   st.bg = em.init("bg",{x=0,y=0})
+  st.lava = em.init("lava",{x=0,y=-200})
   
   
   st.rock = em.init("rock",{x=100,y=400})

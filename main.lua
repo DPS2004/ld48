@@ -112,6 +112,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     templateguy = love.graphics.newImage("assets/templateguy.png"),
     border = love.graphics.newImage("assets/border.png"),
     rock = love.graphics.newImage("assets/rock.png"),
+    lava = love.graphics.newImage("assets/lava.png"),
     bg = love.graphics.newImage("assets/bg.png"),
     title = {
       base = love.graphics.newImage("assets/title/base.png"),
