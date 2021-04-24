@@ -104,13 +104,18 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   sprites = {
     templateguy = love.graphics.newImage("assets/templateguy.png"),
     border = love.graphics.newImage("assets/border.png"),
+    rock = love.graphics.newImage("assets/rock.png"),
     bg = love.graphics.newImage("assets/bg.png")
     
   }
   
   -- make templates
   templates = {
-    drillmin = ez.newtemplate("player/drillmin.png",31,2,true),
+    drillmin = {
+      down = ez.newtemplate("player/down.png",31,2,true),
+      left = ez.newtemplate("player/left.png",31,2,true),
+      right = ez.newtemplate("player/right.png",31,2,true),
+    }
   }
 
   --setup input
@@ -177,6 +182,7 @@ function love.update(d)
     if cs.source then
       cs.source:update()
     end
+    print("this should not happen")
     em.update(dt) -- for text boxes
   end
   --print(tinput)

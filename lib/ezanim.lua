@@ -73,6 +73,7 @@ function ezanim.draw(a,x,y,r,sx,sy,ox,oy,kx,ky)
     love.graphics.draw(a.temp.img,quad,x,y,r,sx,sy,ox,oy,kx,ky)
   end
 end
+
 function ezanim.reset(a)
   a.f=1
   a.time=0

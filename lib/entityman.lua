@@ -26,6 +26,7 @@ function em.update(dt)
       em.deep.queue(v.uplayer, em.update2, v, dt)
     end
   end
+  em.deep.execute() -- OH MY FUCKING GOD IM SUCH A DINGUS
 end
 
 

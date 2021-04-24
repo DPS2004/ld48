@@ -1,6 +1,6 @@
 
 local obj = {
-  layer = -1,
+  layer = -9,
   uplayer = 3,
   x=0,
   y=0,
@@ -11,7 +11,7 @@ local obj = {
 
 function obj.update(dt)
   obj.i = obj.i + dt
-  obj.y = cs.cy % -240
+  obj.y = cs.cy % -960
 end
 
 
