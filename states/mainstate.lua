@@ -6,10 +6,19 @@ function st.init()
   st.bg = em.init("bg",{x=0,y=0})
   st.lava = em.init("lava",{x=0,y=-200})
   
-  
-  st.rock = em.init("rock",{x=100,y=400})
-  st.rock2 = em.init("rock",{x=100,y=440})
-  st.rock3 = em.init("rock",{x=140,y=440})
+  --spawn some obstacles
+  em.init("rock",{x=32,y=300})
+  em.init("rock",{x=32+42*1,y=300})
+  em.init("rock",{x=32+42*2,y=300})
+  em.init("rock",{x=32+42*3,y=300})
+  em.init("rock",{x=32+42*4,y=300})
+  em.init("rock",{x=32+42*5,y=300})
+  em.init("rock",{x=32+42*6,y=300})
+  em.init("rock",{x=32+42*7,y=300})
+  em.init("rock",{x=32+42*8,y=300})
+  --em.init("rock",{x=32+42*9,y=300})
+
+
   
   st.camera = {x=0,y=cameraheight,shake=0}
   st.cx = 0

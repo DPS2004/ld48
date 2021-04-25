@@ -53,6 +53,12 @@ function ezanim.update(a)
   end
 end
 
+function ezanim.rframe(a)
+
+  a.f = math.random(1,a.temp.frames)
+
+end
+
 function ezanim.draw(a,x,y,r,sx,sy,ox,oy,kx,ky)
   x = x or 0
   y = y or 0

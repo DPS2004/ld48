@@ -21,7 +21,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 
   -- import libraries
   
-    
+  
   -- json handler
   json = require "lib.json"
   
@@ -105,7 +105,9 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   
   cameraheight = 94
   
-  frameadvance = true
+  frameadvance = false
+  
+  nostress = true
 
   --load sprites
   sprites = {
@@ -134,6 +136,9 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     volcano = {
       idle = ez.newtemplate("title/idle.png", 32, 4, false),
       erupt = ez.newtemplate("title/erupt.png", 32, 4, false),
+    },
+    particles = {
+      rock = ez.newtemplate("particles/rock.png",14,0,false)
     }
   }
 

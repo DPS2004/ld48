@@ -10,7 +10,9 @@ local obj = {
 
 
 function obj.update(dt)
-  obj.y = obj.y + dt
+  if not nostress then
+    obj.y = obj.y + dt
+  end
 end
 
 

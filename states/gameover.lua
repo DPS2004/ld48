@@ -44,7 +44,7 @@ function st.draw()
   love.graphics.setColor(1,1,1)
   
   em.draw()
-  love.graphics.print("sucks to suck")
+  love.graphics.print("gmae over")
 
   shuv.finish()
 
