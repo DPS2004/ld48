@@ -63,6 +63,13 @@ function obj.update(dt)
     obj.x = 380
     obj.r = obj.r * -1
   end
+  
+  if cs.lava.y - 20 >= obj.y then
+    cs.lose = true
+    
+  end
+  
+  
   for k,v in pairs(obj.anims) do
     ez.update(v)
   end

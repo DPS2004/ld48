@@ -105,7 +105,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   
   cameraheight = 94
   
-  frameadvance = false
+  frameadvance = true
 
   --load sprites
   sprites = {
@@ -174,6 +174,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   bs.new("template")
   bs.new("mainstate")
   bs.new("title")
+  bs.new("gameover")
   cs = bs.load("title")
   cs.init()
 end

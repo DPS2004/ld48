@@ -1,5 +1,5 @@
 local obj = {
-  layer = 1,
+  layer = 12,
   uplayer = 3,
   x=0,
   y=0,

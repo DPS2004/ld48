@@ -8,7 +8,7 @@ function st.init()
   
   
   
-  st.camera = {x=0,y=0,shake=0}
+  st.camera = {x=0,y=240,shake=0}
   st.cx = 0
   st.cy = 240
 end

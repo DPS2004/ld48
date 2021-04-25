@@ -47,7 +47,13 @@ function st.update()
     st.cy = st.camera.y -- TODO: camera shake
     st.border.update(1)
     st.bg.update(1)  -- cringe and hacky workaround :)
+    
+    if st.lose then
+      entities = {}
+      cs = bs.load("gameover")
+    end
   end
+  
 end
 
 function st.getshake()
