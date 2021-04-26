@@ -152,7 +152,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     particles = {
       rock = ez.newtemplate("particles/rock.png",14,0,false)
     },
-    worm = ez.newtemplate("worm.png",32,0,false)
+    worm = ez.newtemplate("worm.png",32,0,false),
+    wormsmall = ez.newtemplate("wormsmall.png",16,0,false)
   }
 
   --setup input

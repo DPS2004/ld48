@@ -8,7 +8,7 @@ local obj = {
   
   myshake = 0,
   timer = 0,
-  timers = {randomrock=0, randomhardrock = 100,gem=100, rockcluster = 200,tunnel = 300,funnel=400,worm=100}
+  timers = {randomrock=0, randomhardrock = 100,gem=100, rockcluster = 200,tunnel = 300,funnel=400,worm=100,wormsmall = 100}
 }
 
 
@@ -124,6 +124,16 @@ function obj.update(dt)
           end
           obj.timers[k] = math.random(800,900) 
           print("worm spawn")
+          break
+        end
+        if k == "wormsmall" then
+          if math.random(0,1) == 1 then
+            em.init("wormsmall",{x=math.random(400,430),y=obj.y+math.random(400,800)})
+          else
+            em.init("wormsmall",{x=math.random(-30,0),y=obj.y+math.random(400,800),left = false})
+          end
+          obj.timers[k] = math.random(400,500) 
+          print("wormsmall spawn")
           break
         end
         
