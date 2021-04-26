@@ -25,14 +25,18 @@ function obj.update(dt)
   obj.i = obj.i + dt
   
   if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-20,y=obj.y-20,width=40,height=40}) then
+    --print("hit!")
     obj.hp = obj.hp - 1
   end
   if obj.hp <= 0 then
-    obj.delete =true
+    obj.delete = true
+    cs.score = cs.score + 4
+    cs.scoreflash = true
     em.init("particle",{x=obj.x-9,y=obj.y-9,angle=helpers.anglepoints(obj.x-9,obj.y-9,cs.player.x,cs.player.y)})
     em.init("particle",{x=obj.x-9,y=obj.y+9,angle=helpers.anglepoints(obj.x-9,obj.y+9,cs.player.x,cs.player.y)})
     em.init("particle",{x=obj.x+9,y=obj.y-9,angle=helpers.anglepoints(obj.x+9,obj.y+9,cs.player.x,cs.player.y)})
     em.init("particle",{x=obj.x+9,y=obj.y+9,angle=helpers.anglepoints(obj.x+9,obj.y-9,cs.player.x,cs.player.y)})
+
   end
 
 end

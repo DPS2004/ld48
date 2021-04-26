@@ -41,7 +41,21 @@ function obj.update(dt)
       
     elseif v.name == "hardrock" then
       if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
-        obj.speed = 0.5
+        obj.speed = 0.4
+        obj.rockshake = obj.rockshake + 0.2
+        foundrock = true
+        hitrock = v
+      end
+    elseif v.name == "gem" then
+      if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
+        obj.speed = 0.4
+        obj.rockshake = obj.rockshake + 0.2
+        foundrock = true
+        hitrock = v
+      end
+    elseif v.name == "worm" then
+      if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
+        obj.speed = 0.4
         obj.rockshake = obj.rockshake + 0.2
         foundrock = true
         hitrock = v

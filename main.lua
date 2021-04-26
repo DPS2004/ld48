@@ -115,6 +115,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     border = love.graphics.newImage("assets/border.png"),
     rock = love.graphics.newImage("assets/rock.png"),
     warning = love.graphics.newImage("assets/warning.png"),
+    gem = love.graphics.newImage("assets/gem.png"),
     hardrock = love.graphics.newImage("assets/hardrock.png"),
     lava = love.graphics.newImage("assets/lava.png"),
     bg = love.graphics.newImage("assets/bg.png"),
@@ -150,7 +151,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     },
     particles = {
       rock = ez.newtemplate("particles/rock.png",14,0,false)
-    }
+    },
+    worm = ez.newtemplate("worm.png",32,0,false)
   }
 
   --setup input

@@ -6,7 +6,8 @@ function st.init()
   st.border = em.init("border",{x=0,y=0})
   st.bg = em.init("bg",{x=0,y=0})
   st.lava = em.init("lava",{x=0,y=-200})
-  
+  st.score = 0
+  st.scoreflash = false
   --spawn some obstacles
   em.init("rock",{x=32,y=300})
   em.init("rock",{x=32+42*1,y=300})
@@ -83,8 +84,21 @@ function st.draw()
   love.graphics.setColor(1,1,1)
   
   em.draw()
+  love.graphics.setColor(0,0,0)
+  
+  love.graphics.print(st.score*100,0,2-10,0,2,2)
+  love.graphics.print(st.score*100,4,2-10,0,2,2)
+  love.graphics.print(st.score*100,2,0-10,0,2,2)
+  love.graphics.print(st.score*100,2,4-10,0,2,2)
+  if st.scoreflash then
+    love.graphics.setColor(1,0,77/255)
+    st.scoreflash = false
+  else
+    love.graphics.setColor(1,1,1)
+  end
+  love.graphics.print(st.score*100,2,2-10,0,2,2)
 
-
+  love.graphics.setColor(1,1,1)
   shuv.finish()
 
 end
