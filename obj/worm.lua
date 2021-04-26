@@ -50,7 +50,7 @@ function obj.update(dt)
     obj.spr.f = 1
   end
   if obj.hp <= 0 then
-    cs.score = cs.score + 5
+    cs.score = cs.score + 500
     cs.scoreflash = true
     obj.delete =true
     em.init("particle",{x=obj.x-9,y=obj.y-9,angle=helpers.anglepoints(obj.x-9,obj.y-9,cs.player.x,cs.player.y)})

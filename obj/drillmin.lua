@@ -8,6 +8,7 @@ local obj = {
   anims = {down = ez.newanim(templates.drillmin.down), left =  ez.newanim(templates.drillmin.left), right =  ez.newanim(templates.drillmin.right)},
   canim = "down",
   i=0,
+  scorei=0,
   rockshake = 0,
   myshake = 0
 }
@@ -16,7 +17,7 @@ local obj = {
 function obj.update(dt)
   obj.myshake = 0
   obj.canim = "down"
-  
+  obj.scorei = obj.scorei + 1
   if maininput:down("left") then
     obj.r = obj.r - 2
     obj.canim = "left"
@@ -37,6 +38,7 @@ function obj.update(dt)
         obj.rockshake = obj.rockshake + 0.5
         foundrock = true
         hitrock = v
+        
       end
       
     elseif v.name == "hardrock" then
@@ -45,6 +47,7 @@ function obj.update(dt)
         obj.rockshake = obj.rockshake + 0.2
         foundrock = true
         hitrock = v
+        
       end
     elseif v.name == "gem" then
       if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
@@ -52,6 +55,7 @@ function obj.update(dt)
         obj.rockshake = obj.rockshake + 0.2
         foundrock = true
         hitrock = v
+        
       end
     elseif v.name == "worm" then
       if (helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=60*(v.length+1),height=40}) and v.left) or (helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-20-(60*(v.length+1)),y=v.y-20,width=60*(v.length+1),height=40}) and v.left == false) then
@@ -59,6 +63,7 @@ function obj.update(dt)
         obj.rockshake = obj.rockshake + 0.2
         foundrock = true
         hitrock = v
+        
       end
     end
   end
@@ -71,7 +76,9 @@ function obj.update(dt)
     end
   end
   obj.myshake = obj.myshake + obj.rockshake
-
+  
+  
+  
   
   local rret = helpers.rotate(obj.speed*dt*-1,obj.r,obj.x,obj.y)
   obj.x = rret[1]
@@ -91,6 +98,21 @@ function obj.update(dt)
     
   end
   
+  if cs.lava.y +80 >= obj.y then
+    obj.scoredelay = 4
+    
+  else
+    obj.scoredelay = 8
+  end
+  
+  if obj.scorei >=obj.scoredelay then
+    obj.scorei = 0
+    if obj.foundrock then
+      cs.score = cs.score + 2
+    else
+      cs.score = cs.score + 1
+    end
+  end
   
   for k,v in pairs(obj.anims) do
     ez.update(v)
