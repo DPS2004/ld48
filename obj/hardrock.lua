@@ -1,11 +1,12 @@
+
 local obj = {
   layer = -1,
   uplayer = 2,
   x=0,
   y=0,
   r=0,
-  hp=20,
-  spr = sprites.rock,
+  hp=80,
+  spr = sprites.hardrock,
   i=0,
   init= false,
   myshake = 0

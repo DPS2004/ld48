@@ -107,13 +107,14 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   
   frameadvance = false
   
-  nostress = true
+  nostress = false
 
   --load sprites
   sprites = {
     templateguy = love.graphics.newImage("assets/templateguy.png"),
     border = love.graphics.newImage("assets/border.png"),
     rock = love.graphics.newImage("assets/rock.png"),
+    hardrock = love.graphics.newImage("assets/hardrock.png"),
     lava = love.graphics.newImage("assets/lava.png"),
     bg = love.graphics.newImage("assets/bg.png"),
     title = {
@@ -133,6 +134,15 @@ love.graphics.setDefaultFilter("nearest", "nearest")
       wateringcan = ez.newtemplate("player/wateringcan.png",64,2,true),
       grabdrill = ez.newtemplate("player/grabdrill.png",64,4,false),
     },
+    
+    drillminwhite = {
+      down = ez.newtemplate("player_white/down.png",31,0,false), -- i know i should be using a shader of some sort to do this but, ludum dare!!!
+      left = ez.newtemplate("player_white/left.png",31,0,false), 
+      right = ez.newtemplate("player_white/right.png",31,0,false),
+      wateringcan = ez.newtemplate("player_white/wateringcan.png",64,0,false),
+      grabdrill = ez.newtemplate("player_white/grabdrill.png",64,0,false),
+    },
+
     volcano = {
       idle = ez.newtemplate("title/idle.png", 32, 4, false),
       erupt = ez.newtemplate("title/erupt.png", 32, 4, false),
