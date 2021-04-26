@@ -45,6 +45,7 @@ for k, v in pairs(easing) do
       return .5 * (1 - ($e)) + .5
     end
   ]], v)
+
 end
 
 

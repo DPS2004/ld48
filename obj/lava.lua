@@ -66,6 +66,13 @@ function obj.update(dt)
             if i ~= skip and i ~= skip2 then
               em.init("rock",{x=32+42*i,y=obj.y+600})
               em.init("hardrock",{x=32+42*i,y=obj.y+642})
+              
+              local newpart = em.init("particle",{x=32+42*i,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+              flux.to(newpart,30,{y=140}):ease("outExpo"):oncomplete(function() 
+                flux.to(newpart,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                  newpart.delete = true 
+                end)
+              end)
             end
           end
           obj.timers[k] = math.random(500,600) 
