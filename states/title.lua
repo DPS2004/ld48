@@ -32,16 +32,16 @@ function st.update()
 
   --st.camera.shake = 0
   if not paused then
-    if maininput:pressed("accept") then
+    if maininput:pressed("accept") and st.status ~= "eruptstart" then
       st.status="eruptstart"
       st.volcano.canim = "erupt"
       st.dmcutscene.canim = "grabdrill"
-      
+      te.play("assets/sounds/erupt.ogg","static")
       
       
     end
     if st.status == "eruptstart" then
-      st.camera.shake = st.camera.shake + 0.05
+      st.camera.shake = st.camera.shake + 0.025
     end
     flux.update(1)
     em.update(dt)

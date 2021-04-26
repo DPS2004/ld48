@@ -134,7 +134,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
       left = ez.newtemplate("player/left.png",31,2,true),
       right = ez.newtemplate("player/right.png",31,2,true),
       wateringcan = ez.newtemplate("player/wateringcan.png",64,2,true),
-      grabdrill = ez.newtemplate("player/grabdrill.png",64,4,false),
+      grabdrill = ez.newtemplate("player/grabdrill.png",64,8,false),
     },
     
     drillminwhite = {
@@ -147,7 +147,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 
     volcano = {
       idle = ez.newtemplate("title/idle.png", 32, 4, false),
-      erupt = ez.newtemplate("title/erupt.png", 32, 4, false),
+      erupt = ez.newtemplate("title/erupt.png", 32, 8, false),
     },
     particles = {
       rock = ez.newtemplate("particles/rock.png",14,0,false)

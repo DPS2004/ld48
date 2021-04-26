@@ -117,10 +117,11 @@ function obj.update(dt)
           break
         end
         if k == "worm" then
-
-          em.init("worm",{x=math.random(400,430),y=obj.y+math.random(400,800)})
-
-          
+          if math.random(0,1) == 1 then
+            em.init("worm",{x=math.random(400,430),y=obj.y+math.random(400,800)})
+          else
+            em.init("worm",{x=math.random(-30,0),y=obj.y+math.random(400,800),left = false})
+          end
           obj.timers[k] = math.random(800,900) 
           print("worm spawn")
           break

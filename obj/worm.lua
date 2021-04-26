@@ -27,11 +27,20 @@ function obj.update(dt)
   obj.myshake = 0
   obj.i = obj.i + dt
   obj.hit = false
-  if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-20,y=obj.y-20,width=60*(obj.length+1),height=40}) then
-    obj.hp = obj.hp - 1
-    obj.hit = true
-    obj.spr.f = 2
+  if obj.left then
+    if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-20,y=obj.y-20,width=60*(obj.length+1),height=40}) then
+      obj.hp = obj.hp - 1
+      obj.hit = true
+      obj.spr.f = 2
+    end
+  else
+    if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-20-(60*(obj.length+1)),y=obj.y-20,width=60*(obj.length+1),height=40}) then
+      obj.hp = obj.hp - 1
+      obj.hit = true
+      obj.spr.f = 2
+    end
   end
+    
   if not obj.hit then
     if obj.left then
       obj.x = obj.x - obj.speed
@@ -57,15 +66,29 @@ function obj.getshake()
 end
 
 function obj.draw()
-  ez.draw(obj.spr, obj.x+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(obj.x/10)*5, math.rad(obj.r),2,2,16,16)
+  local xscale = 2
+  if not obj.left then
+    xscale = -2
+  end
+  ez.draw(obj.spr, obj.x+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(obj.x/10)*5, math.rad(obj.r),xscale,2,16,16)
   for i=1,obj.length do
     obj.spr.f = 3
-    local ox= obj.x+(60*i)
-    ez.draw(obj.spr, ox+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(ox/10)*(5+(i*2)), math.rad(obj.r),2,2,16,16)
+    if obj.left then
+      local ox= obj.x+(60*i)
+      ez.draw(obj.spr, ox+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(ox/10)*(5+(i*2)), math.rad(obj.r),xscale,2,16,16)
+    else
+      local ox= obj.x-(60*i)
+      ez.draw(obj.spr, ox+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(ox/10)*(5+(i*2)), math.rad(obj.r),xscale,2,16,16)
+    end
   end
   obj.spr.f = 4
-  local ox= obj.x+(60*(obj.length+1))
-  ez.draw(obj.spr, ox+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(ox/10)*(5+((obj.length+1)*2)), math.rad(obj.r),2,2,16,16)
+  if obj.left then
+    local ox= obj.x+(60*(obj.length+1))
+    ez.draw(obj.spr, ox+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(ox/10)*(5+((obj.length+1)*2)), math.rad(obj.r),xscale,2,16,16)
+  else
+    local ox= obj.x-(60*(obj.length+1))
+    ez.draw(obj.spr, ox+cs.cx+obj.getshake(), obj.y+cs.cy+obj.getshake()+math.sin(ox/10)*(5+((obj.length+1)*2)), math.rad(obj.r),xscale,2,16,16)
+  end
 end
 
 
