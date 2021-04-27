@@ -53,6 +53,7 @@ function obj.update(dt)
     cs.score = cs.score + 500
     cs.scoreflash = true
     obj.delete =true
+    te.play("assets/sounds/destroy.ogg","static")
     em.init("particle",{x=obj.x-9,y=obj.y-9,angle=helpers.anglepoints(obj.x-9,obj.y-9,cs.player.x,cs.player.y)})
     em.init("particle",{x=obj.x-9,y=obj.y+9,angle=helpers.anglepoints(obj.x-9,obj.y+9,cs.player.x,cs.player.y)})
     em.init("particle",{x=obj.x+9,y=obj.y-9,angle=helpers.anglepoints(obj.x+9,obj.y+9,cs.player.x,cs.player.y)})

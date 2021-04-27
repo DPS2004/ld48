@@ -30,6 +30,7 @@ function obj.update(dt)
   end
   if obj.hp <= 0 then
     obj.delete = true
+    te.play("assets/sounds/destroy.ogg","static")
     cs.score = cs.score + 1000
     cs.scoreflash = true
     em.init("particle",{x=obj.x-9,y=obj.y-9,angle=helpers.anglepoints(obj.x-9,obj.y-9,cs.player.x,cs.player.y)})

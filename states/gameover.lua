@@ -1,6 +1,9 @@
 local st = {}
 function st.init()
   entities = {}
+  te.stop("bgm")
+  te.stop("all")
+  te.play("assets/sounds/gameover.ogg","static","bgm",1,1,function(a) te.playLooping("assets/sounds/gameover_loop.ogg","static","bgm") print("done") end)
 end
 
 

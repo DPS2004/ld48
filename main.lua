@@ -221,6 +221,7 @@ function love.update(d)
       dt = 2
     end
     cs.update(dt)
+    te.cleanup()
     --print(tinput)
   end
 end

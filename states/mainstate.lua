@@ -25,6 +25,8 @@ function st.init()
   st.camera = {x=0,y=cameraheight,shake=0}
   st.cx = 0
   st.cy = cameraheight
+  
+  te.playLooping("assets/sounds/ld48.ogg","static","bgm")
 end
 
 
@@ -62,6 +64,7 @@ function st.update()
     if st.lose then
       entities = {}
       cs = bs.load("gameover")
+      cs.init()
     end
   end
   

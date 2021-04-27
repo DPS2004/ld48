@@ -108,6 +108,7 @@ function obj.update(dt)
   
   if cs.lava.y +80 >= obj.y then
     obj.scoredelay = 4
+    cs.scoreflash = true
     
   else
     obj.scoredelay = 8

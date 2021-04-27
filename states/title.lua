@@ -5,7 +5,8 @@ function st.init()
   st.dmcutscene = em.init("dmcutscene",{x=230,y=-100})
   st.volcano = em.init("volcano",{x=180,y=-366})
   st.status = "calm"
-  
+  te.stop("bgm")
+  te.play("assets/sounds/intro.ogg","static","bgm",1,1,function(a) te.playLooping("assets/sounds/intro_loop.ogg","static","bgm") print("done") end)
   
   
   st.camera = {x=0,y=240,shake=0}
@@ -36,6 +37,7 @@ function st.update()
       st.status="eruptstart"
       st.volcano.canim = "erupt"
       st.dmcutscene.canim = "grabdrill"
+      te.stop("bgm")
       te.play("assets/sounds/erupt.ogg","static")
       
       
