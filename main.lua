@@ -169,6 +169,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
         f5 = {"key:f5"},
         k1 = {"key:1"},
         k2 = {"key:2"},
+        k3 = {"key:3"},
         
         
         mouse1 = {"mouse:1"},
@@ -186,8 +187,12 @@ love.graphics.setDefaultFilter("nearest", "nearest")
         joystick = love.joystick.getJoysticks()[1],
     }
     
-    
-  love.math.setRandomSeed(love.mouse.getX())
+  local seed = 0
+  for i=0,math.abs(love.mouse.getX()) do
+    seed = seed + love.math.random(0,100)
+  end
+  love.math.setRandomSeed(seed)
+  print(seed)
     
     
   entities = {}

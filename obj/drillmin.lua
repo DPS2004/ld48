@@ -73,6 +73,14 @@ function obj.update(dt)
         hitrock = v
         
       end
+    elseif v.name == "upworm" then
+      if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-20,y=v.y-20 ,width = 40, height = 60*(v.length+1)}) then
+        obj.speed = 0.4
+        obj.rockshake = obj.rockshake + 0.2*dt
+        foundrock = true
+        hitrock = v
+        
+      end
     end
   end
   if foundrock then

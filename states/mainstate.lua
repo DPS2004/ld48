@@ -26,7 +26,7 @@ function st.init()
   st.cx = 0
   st.cy = cameraheight
   
-  te.playLooping("assets/sounds/ld48.ogg","static","bgm")
+  te.playLooping("assets/sounds/ld48.ogg","stream","bgm")
 end
 
 

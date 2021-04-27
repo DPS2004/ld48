@@ -3,7 +3,7 @@ function st.init()
   entities = {}
   te.stop("bgm")
   te.stop("all")
-  te.play("assets/sounds/gameover.ogg","static","bgm",1,1,function(a) te.playLooping("assets/sounds/gameover_loop.ogg","static","bgm") print("done") end)
+  te.play("assets/sounds/gameover.ogg","stream","bgm",1,1,function(a) te.playLooping("assets/sounds/gameover_loop.ogg","stream","bgm") print("done") end)
   st.savescore = 69
 end
 

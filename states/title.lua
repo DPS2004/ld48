@@ -6,7 +6,7 @@ function st.init()
   st.volcano = em.init("volcano",{x=180,y=-366})
   st.status = "calm"
   te.stop("bgm")
-  te.play("assets/sounds/intro.ogg","static","bgm",1,1,function(a) te.playLooping("assets/sounds/intro_loop.ogg","static","bgm") print("done") end)
+  te.play("assets/sounds/intro.ogg","stream","bgm",1,1,function(a) te.playLooping("assets/sounds/intro_loop.ogg","stream","bgm") print("done") end)
   st.logo = em.init("logo",{})
   st.instructions = em.init("instructions",{})
   

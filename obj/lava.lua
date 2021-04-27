@@ -8,7 +8,7 @@ local obj = {
   
   myshake = 0,
   timer = 0,
-  timers = {randomrock=0, randomhardrock = 100,gem=100, rockcluster = 200,tunnel = 300,funnel=400,worm=100,wormsmall = 100}
+  timers = {randomrock=0,upworm = 400, randomhardrock = 100,gem=100, rockcluster = 200,tunnel = 300,funnel=400,worm=100,wormsmall = 100,}
 }
 
 
@@ -137,13 +137,30 @@ function obj.update(dt)
           print("wormsmall spawn")
           break
         end
+        if k == "upworm" then
+          local spawnx = math.random(32,370)
+          local newpart = em.init("particle",{x=spawnx,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+          flux.to(newpart,30,{y=140}):ease("outExpo"):oncomplete(function() 
+            flux.to(newpart,30,{y=-16}):ease("inExpo"):oncomplete(function()
+              newpart.delete = true 
+            end)
+          end)
+          
+          em.init("upworm",{x=spawnx,y=obj.y+800})
+          obj.timers[k] =love.math.random(1200,1300) 
+          print("upworm spawn") --whats upworm? nothing much how about you LMAOOOOOOOOOOOOOOOOOOOOO
+          break
+        end
         
         
       end
     end
   obj.timer =love.math.random(50,100)
   end
-  
+  if maininput:pressed("k3") then
+    em.init("upworm",{x=math.random(32,370),y=obj.y+800})
+    print("upworm spawn") --whats upworm? nothing much how about you LMAOOOOOOOOOOOOOOOOOOOOO
+  end
 end
 
 

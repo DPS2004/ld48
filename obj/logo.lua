@@ -19,7 +19,11 @@ local obj = {
     "you know, it's probably a good thing magma doesn't exist",
     "Drills of Future Past",
     "Is your refrigerator running? Good.",
-    "Now in cherry flavor"
+    "Now in cherry flavor",
+    "More cowbell!",
+    "oh wow haha awesome",
+    "Love2d is cool!",
+    "haha drill go brrrrrr"
   },
   cline = "error!!!!",
   init = false
