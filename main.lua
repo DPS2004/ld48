@@ -11,7 +11,7 @@ function love.load()
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
   
-  font = love.graphics.newFont("assets/Axolotl.ttf", 16)
+  font = love.graphics.newFont("assets/Axmolotl.ttf", 16)
   font:setFilter("nearest", "nearest",0)
 
 love.graphics.setDefaultFilter("nearest", "nearest")

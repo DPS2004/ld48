@@ -24,9 +24,10 @@ local obj = {
     "oh wow haha awesome",
     "Love2d is cool!",
     "haha drill go brrrrrr",
-    "No, I don’t have Gunboots. Stop asking.",
+    "No, I dont have Gunboots. Stop asking.",
     "Drilling with Style",
-    "Kid Tested. Mother Approved."
+    "Kid Tested. Mother Approved.",
+    "Bedrock is just a suggestion"
   },
   cline = "error!!!!",
   init = false
@@ -43,17 +44,15 @@ end
 
 function obj.draw()
   love.graphics.draw(obj.spr,obj.x,obj.y,0,2,2)
-  love.graphics.printf(obj.cline,106,obj.y + 122,148,"center",0,2,2)
-  love.graphics.printf(obj.cline,102,obj.y + 122,148,"center",0,2,2)
-  love.graphics.printf(obj.cline,102,obj.y + 118,148,"center",0,2,2)
-  love.graphics.printf(obj.cline,106,obj.y + 118,148,"center",0,2,2)
---  love.graphics.setColor(0,0,0)
---  love.graphics.printf(obj.cline,101,obj.y + 118,148,"center",0,2,2)
---  love.graphics.printf(obj.cline,102,obj.y + 122,148,"center",0,2,2)
---  love.graphics.printf(obj.cline,106,obj.y + 122,148,"center",0,2,2)
---  love.graphics.printf(obj.cline,106,obj.y + 118,148,"center",0,2,2)
+  --love.graphics.setColor(1,0,0)
+  love.graphics.printf(obj.cline,104,obj.y + 126,148,"center",0,2,2)
+  love.graphics.printf(obj.cline,104,obj.y + 122,148,"center",0,2,2)
+  love.graphics.printf(obj.cline,102,obj.y + 124,148,"center",0,2,2)
+  love.graphics.printf(obj.cline,106,obj.y + 124,148,"center",0,2,2)
+
+
   love.graphics.setColor(0,0,0)
-  love.graphics.printf(obj.cline,104,obj.y + 120,148,"center",0,2,2)
+  love.graphics.printf(obj.cline,104,obj.y + 124,148,"center",0,2,2)
   
   
   

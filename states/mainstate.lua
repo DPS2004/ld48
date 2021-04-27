@@ -93,17 +93,17 @@ function st.draw()
   em.draw()
   love.graphics.setColor(0,0,0)
   
-  love.graphics.print(st.score,0,2-10,0,2,2)
-  love.graphics.print(st.score,4,2-10,0,2,2)
-  love.graphics.print(st.score,2,0-10,0,2,2)
-  love.graphics.print(st.score,2,4-10,0,2,2)
+  love.graphics.print(st.score,0,2-4,0,2,2)
+  love.graphics.print(st.score,4,2-4,0,2,2)
+  love.graphics.print(st.score,2,0-4,0,2,2)
+  love.graphics.print(st.score,2,4-4,0,2,2)
   if st.scoreflash then
     love.graphics.setColor(1,0,77/255)
     st.scoreflash = false
   else
     love.graphics.setColor(1,1,1)
   end
-  love.graphics.print(st.score,2,2-10,0,2,2)
+  love.graphics.print(st.score,2,2-4,0,2,2)
 
   love.graphics.setColor(1,1,1)
   shuv.finish()
