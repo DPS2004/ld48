@@ -34,7 +34,7 @@ function obj.update(dt)
       obj.spr.f = 2
     end
   else
-    if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-20-(60*(obj.length+1)),y=obj.y-20,width=60*(obj.length+1),height=40}) then
+    if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-(60*(obj.length+1)),y=obj.y-20,width=60*(obj.length+1),height=40}) then
       obj.hp = obj.hp - 1
       obj.hit = true
       obj.spr.f = 2

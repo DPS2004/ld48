@@ -7,7 +7,8 @@ function st.init()
   st.status = "calm"
   te.stop("bgm")
   te.play("assets/sounds/intro.ogg","static","bgm",1,1,function(a) te.playLooping("assets/sounds/intro_loop.ogg","static","bgm") print("done") end)
-  
+  st.logo = em.init("logo",{})
+  st.instructions = em.init("instructions",{})
   
   st.camera = {x=0,y=240,shake=0}
   st.cx = 0
@@ -39,7 +40,8 @@ function st.update()
       st.dmcutscene.canim = "grabdrill"
       te.stop("bgm")
       te.play("assets/sounds/erupt.ogg","static")
-      
+      flux.to(st.logo,60,{y=-240}):ease("inQuint"):oncomplete(function() st.logo.delete = true end)
+      flux.to(st.instructions,60,{y=40}):ease("inQuint"):oncomplete(function() st.instructions.delete = true end)
       
     end
     if st.status == "eruptstart" then

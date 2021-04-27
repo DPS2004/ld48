@@ -122,6 +122,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     title = {
       base = love.graphics.newImage("assets/title/base.png"),
       blades = love.graphics.newImage("assets/title/blades.png"),
+      logo = love.graphics.newImage("assets/title/logo.png"),
+      instructions = love.graphics.newImage("assets/title/instructions.png"),
       ground = love.graphics.newImage("assets/title/ground.png")
     }
     
