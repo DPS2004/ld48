@@ -187,6 +187,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     }
     
     
+  love.math.setRandomSeed(love.mouse.getX())
+    
     
   entities = {}
   -- init states
@@ -198,6 +200,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   bs.new("gameover")
   cs = bs.load("title")
   cs.init()
+  
 end
 
 function love.textinput(t)

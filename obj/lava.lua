@@ -37,38 +37,38 @@ function obj.update(dt)
     for k,v in pairs(obj.timers) do
       if v <= 0 then
         if k == "randomrock" then
-          em.init("rock",{x=math.random(32,370),y=obj.y+600})
-          obj.timers[k] = math.random(200,300) 
+          em.init("rock",{x=love.math.random(32,370),y=obj.y+600})
+          obj.timers[k] = love.math.random(200,300) 
           print("rock spawn")
           break
         end
         if k == "randomhardrock" then
           em.init("hardrock",{x=math.random(32,370),y=obj.y+600})
-          obj.timers[k] = math.random(300,400) 
+          obj.timers[k] =love.math.random(300,400) 
           print("hardrock spawn")
           break
         end
         if k == "gem" then
           em.init("gem",{x=math.random(32,370),y=obj.y+600})
-          obj.timers[k] = math.random(300,400) 
+          obj.timers[k] =love.math.random(300,400) 
           print("gem spawn")
           break
         end
         if k == "rockcluster" then
-          local xpos = math.random(32+42,370-42)
+          local xpos =love.math.random(32+42,370-42)
           em.init("rock",{x=xpos,y=obj.y+600})
           em.init("hardrock",{x=xpos,y=obj.y+642})
           em.init("rock",{x=xpos-42,y=obj.y+642})
           em.init("rock",{x=xpos+42,y=obj.y+642})
           em.init("rock",{x=xpos,y=obj.y+684})
-          obj.timers[k] = math.random(200,400) 
+          obj.timers[k] =love.math.random(200,400) 
           print("cluster spawn")
           break
         end
         if k == "tunnel" then
           
-          local skip = math.random(1,7)
-          local skip2 = math.random(1,7)
+          local skip =love.math.random(1,7)
+          local skip2 =love.math.random(1,7)
           for i=0,8 do
             if i ~= skip and i ~= skip2 then
               em.init("rock",{x=32+42*i,y=obj.y+600})
@@ -82,12 +82,12 @@ function obj.update(dt)
               end)
             end
           end
-          obj.timers[k] = math.random(500,600) 
+          obj.timers[k] =love.math.random(500,600) 
           print("tunnel spawn")
           break
         end
         if k == "funnel" then
-          local xpos = math.random(32+42,370-42)
+          local xpos =love.math.random(32+42,370-42)
           em.init("rock",{x=32+42*0,y=obj.y+600})
           em.init("rock",{x=32+42*8,y=obj.y+600})
           
@@ -112,27 +112,27 @@ function obj.update(dt)
           em.init("hardrock",{x=32+42*7,y=obj.y+600+42*3})
           em.init("hardrock",{x=32+42*8,y=obj.y+600+42*3})
           
-          obj.timers[k] = math.random(1000,1200) 
+          obj.timers[k] =love.math.random(1000,1200) 
           print("funnel spawn")
           break
         end
         if k == "worm" then
-          if math.random(0,1) == 1 then
+          if love.math.random(0,1) == 1 then
             em.init("worm",{x=math.random(400,430),y=obj.y+math.random(400,800)})
           else
             em.init("worm",{x=math.random(-30,0),y=obj.y+math.random(400,800),left = false})
           end
-          obj.timers[k] = math.random(800,900) 
+          obj.timers[k] =love.math.random(800,900) 
           print("worm spawn")
           break
         end
         if k == "wormsmall" then
-          if math.random(0,1) == 1 then
+          if love.math.random(0,1) == 1 then
             em.init("wormsmall",{x=math.random(400,430),y=obj.y+math.random(400,800)})
           else
             em.init("wormsmall",{x=math.random(-30,0),y=obj.y+math.random(400,800),left = false})
           end
-          obj.timers[k] = math.random(400,500) 
+          obj.timers[k] =love.math.random(400,500) 
           print("wormsmall spawn")
           break
         end
@@ -140,7 +140,7 @@ function obj.update(dt)
         
       end
     end
-  obj.timer = math.random(50,100)
+  obj.timer =love.math.random(50,100)
   end
   
 end
@@ -154,7 +154,7 @@ function obj.draw()
   love.graphics.setColor(1,0,77/255)
   love.graphics.rectangle("fill",obj.x,obj.y-400+ cs.cy,400,440)
   love.graphics.setColor(1,1,1)
-  love.graphics.draw(obj.spr,(obj.x+ cs.cx + obj.getshake()-math.sin(obj.i/100)*600+obj.i*0.5)%-800,obj.y+ cs.cy + obj.getshake(),0,2,2)
+  love.graphics.draw(obj.spr,(obj.x+ cs.cx + obj.getshake()-math.sin(obj.i/100)*600+obj.i*0.5)%-800,obj.y+ cs.cy + obj.getshake()-20,0,2,2)
   
 end
 

@@ -79,7 +79,7 @@ function st.update()
 end
 
 function st.getshake()
-  local shake = ((0 - st.camera.shake) + (math.random() * (st.camera.shake * 2)))
+  local shake = ((0 - st.camera.shake) + (love.math.random() * (st.camera.shake * 2)))
   return shake
 end
 

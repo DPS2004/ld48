@@ -63,8 +63,10 @@ function st.update()
     
     if st.lose then
       entities = {}
+      local savescore = cs.score
       cs = bs.load("gameover")
       cs.init()
+      cs.savescore = savescore
     end
   end
   
