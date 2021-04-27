@@ -20,6 +20,9 @@ end
 
 function obj.draw()
   love.graphics.draw(obj.spr,obj.x,obj.y,0,2,2)
+  if tatemode then
+    love.graphics.draw(obj.spr,obj.x,obj.y+480,0,2,2)
+  end
   
 end
 

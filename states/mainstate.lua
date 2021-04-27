@@ -8,6 +8,8 @@ function st.init()
   st.lava = em.init("lava",{x=0,y=-200})
   st.score = 0
   st.scoreflash = false
+  
+  
   --spawn some obstacles
   em.init("rock",{x=32,y=300})
   em.init("rock",{x=32+42*1,y=300})

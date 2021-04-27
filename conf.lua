@@ -9,4 +9,8 @@ function love.conf(t)
   end
   t.window.width = 400
   t.window.height = 240
+  tatemode = false 
+  if tatemode then
+    gameWidth, gameHeight = 400,700
+  end
 end

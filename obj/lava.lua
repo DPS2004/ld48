@@ -38,30 +38,30 @@ function obj.update(dt)
     for k,v in pairs(obj.timers) do
       if v <= 0 then
         if k == "randomrock" then
-          em.init("rock",{x=love.math.random(32,370),y=obj.y+600})
+          em.init("rock",{x=love.math.random(32,370),y=obj.y+800})
           obj.timers[k] = love.math.random(200,300) 
           print("rock spawn")
           break
         end
         if k == "randomhardrock" then
-          em.init("hardrock",{x=math.random(32,370),y=obj.y+600})
+          em.init("hardrock",{x=math.random(32,370),y=obj.y+800})
           obj.timers[k] =love.math.random(300,400) 
           print("hardrock spawn")
           break
         end
         if k == "gem" then
-          em.init("gem",{x=math.random(32,370),y=obj.y+600})
+          em.init("gem",{x=math.random(32,370),y=obj.y+800})
           obj.timers[k] =love.math.random(300,400) 
           print("gem spawn")
           break
         end
         if k == "rockcluster" then
           local xpos =love.math.random(32+42,370-42)
-          em.init("rock",{x=xpos,y=obj.y+600})
-          em.init("hardrock",{x=xpos,y=obj.y+642})
-          em.init("rock",{x=xpos-42,y=obj.y+642})
-          em.init("rock",{x=xpos+42,y=obj.y+642})
-          em.init("rock",{x=xpos,y=obj.y+684})
+          em.init("rock",{x=xpos,y=obj.y+800})
+          em.init("hardrock",{x=xpos,y=obj.y+842})
+          em.init("rock",{x=xpos-42,y=obj.y+842})
+          em.init("rock",{x=xpos+42,y=obj.y+842})
+          em.init("rock",{x=xpos,y=obj.y+884})
           obj.timers[k] =love.math.random(200,400) 
           print("cluster spawn")
           break
@@ -72,15 +72,16 @@ function obj.update(dt)
           local skip2 =love.math.random(1,7)
           for i=0,8 do
             if i ~= skip and i ~= skip2 then
-              em.init("rock",{x=32+42*i,y=obj.y+600})
-              em.init("hardrock",{x=32+42*i,y=obj.y+642})
-              
-              local newpart = em.init("particle",{x=32+42*i,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
-              flux.to(newpart,30,{y=140}):ease("outExpo"):oncomplete(function() 
-                flux.to(newpart,30,{y=-16}):ease("inExpo"):oncomplete(function()
-                  newpart.delete = true 
+              em.init("rock",{x=32+42*i,y=obj.y+800})
+              em.init("hardrock",{x=32+42*i,y=obj.y+842})
+              if not tatemode then
+                local newpart = em.init("particle",{x=32+42*i,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+                flux.to(newpart,30,{y=140}):ease("outExpo"):oncomplete(function() 
+                  flux.to(newpart,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                    newpart.delete = true 
+                  end)
                 end)
-              end)
+              end
             end
           end
           obj.timers[k] =love.math.random(500,600) 
@@ -89,29 +90,29 @@ function obj.update(dt)
         end
         if k == "funnel" then
           local xpos =love.math.random(32+42,370-42)
-          em.init("rock",{x=32+42*0,y=obj.y+600})
-          em.init("rock",{x=32+42*8,y=obj.y+600})
+          em.init("rock",{x=32+42*0,y=obj.y+800})
+          em.init("rock",{x=32+42*8,y=obj.y+800})
           
-          em.init("hardrock",{x=32+42*0,y=obj.y+600+42*1})
-          em.init("rock",    {x=32+42*1,y=obj.y+600+42*1})
-          em.init("rock",    {x=32+42*7,y=obj.y+600+42*1})
-          em.init("hardrock",{x=32+42*8,y=obj.y+600+42*1})
+          em.init("hardrock",{x=32+42*0,y=obj.y+800+42*1})
+          em.init("rock",    {x=32+42*1,y=obj.y+800+42*1})
+          em.init("rock",    {x=32+42*7,y=obj.y+800+42*1})
+          em.init("hardrock",{x=32+42*8,y=obj.y+800+42*1})
 
-          em.init("hardrock",{x=32+42*0,y=obj.y+600+42*2})
-          em.init("hardrock",{x=32+42*1,y=obj.y+600+42*2})
-          em.init("rock",    {x=32+42*2,y=obj.y+600+42*2})
-          em.init("rock",    {x=32+42*6,y=obj.y+600+42*2})
-          em.init("hardrock",{x=32+42*7,y=obj.y+600+42*2})
-          em.init("hardrock",{x=32+42*8,y=obj.y+600+42*2})
+          em.init("hardrock",{x=32+42*0,y=obj.y+800+42*2})
+          em.init("hardrock",{x=32+42*1,y=obj.y+800+42*2})
+          em.init("rock",    {x=32+42*2,y=obj.y+800+42*2})
+          em.init("rock",    {x=32+42*6,y=obj.y+800+42*2})
+          em.init("hardrock",{x=32+42*7,y=obj.y+800+42*2})
+          em.init("hardrock",{x=32+42*8,y=obj.y+800+42*2})
           
-          em.init("hardrock",{x=32+42*0,y=obj.y+600+42*3})
-          em.init("hardrock",{x=32+42*1,y=obj.y+600+42*3})
-          em.init("hardrock",{x=32+42*2,y=obj.y+600+42*3})
-          em.init("rock",    {x=32+42*3,y=obj.y+600+42*3})
-          em.init("rock",    {x=32+42*5,y=obj.y+600+42*3})
-          em.init("hardrock",{x=32+42*6,y=obj.y+600+42*3})
-          em.init("hardrock",{x=32+42*7,y=obj.y+600+42*3})
-          em.init("hardrock",{x=32+42*8,y=obj.y+600+42*3})
+          em.init("hardrock",{x=32+42*0,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*1,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*2,y=obj.y+800+42*3})
+          em.init("rock",    {x=32+42*3,y=obj.y+800+42*3})
+          em.init("rock",    {x=32+42*5,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*6,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*7,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*8,y=obj.y+800+42*3})
           
           obj.timers[k] =love.math.random(1000,1200) 
           print("funnel spawn")
@@ -119,9 +120,9 @@ function obj.update(dt)
         end
         if k == "worm" then
           if love.math.random(0,1) == 1 then
-            em.init("worm",{x=math.random(400,430),y=obj.y+math.random(400,800)})
+            em.init("worm",{x=math.random(400,460),y=obj.y+math.random(400,800)})
           else
-            em.init("worm",{x=math.random(-30,0),y=obj.y+math.random(400,800),left = false})
+            em.init("worm",{x=math.random(-60,0),y=obj.y+math.random(400,800),left = false})
           end
           obj.timers[k] =love.math.random(800,900) 
           print("worm spawn")
@@ -139,13 +140,14 @@ function obj.update(dt)
         end
         if k == "upworm" then
           local spawnx = math.random(32,370)
-          local newpart = em.init("particle",{x=spawnx,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
-          flux.to(newpart,30,{y=140}):ease("outExpo"):oncomplete(function() 
-            flux.to(newpart,30,{y=-16}):ease("inExpo"):oncomplete(function()
-              newpart.delete = true 
+          if not tatemode then
+            local newpart = em.init("particle",{x=spawnx,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+            flux.to(newpart,30,{y=140}):ease("outExpo"):oncomplete(function() 
+              flux.to(newpart,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                newpart.delete = true 
+              end)
             end)
-          end)
-          
+          end
           em.init("upworm",{x=spawnx,y=obj.y+800})
           obj.timers[k] =love.math.random(1200,1300) 
           print("upworm spawn") --whats upworm? nothing much how about you LMAOOOOOOOOOOOOOOOOOOOOO

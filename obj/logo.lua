@@ -23,7 +23,10 @@ local obj = {
     "More cowbell!",
     "oh wow haha awesome",
     "Love2d is cool!",
-    "haha drill go brrrrrr"
+    "haha drill go brrrrrr",
+    "No, I don’t have Gunboots. Stop asking.",
+    "Drilling with Style",
+    "Kid Tested. Mother Approved."
   },
   cline = "error!!!!",
   init = false
