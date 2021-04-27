@@ -17,13 +17,13 @@ local obj = {
 function obj.update(dt)
   obj.myshake = 0
   obj.canim = "down"
-  obj.scorei = obj.scorei + 1
+  obj.scorei = obj.scorei + dt
   if maininput:down("left") then
-    obj.r = obj.r - 2
+    obj.r = obj.r - 2*dt
     obj.canim = "left"
   end
   if maininput:down("right") then
-    obj.r = obj.r + 2
+    obj.r = obj.r + 2*dt
     obj.canim = "right"
   end
   
@@ -35,7 +35,7 @@ function obj.update(dt)
     if v.name == "rock" then
       if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
         obj.speed = 0.75
-        obj.rockshake = obj.rockshake + 0.5
+        obj.rockshake = obj.rockshake + 0.5*dt
         foundrock = true
         hitrock = v
         
@@ -44,7 +44,7 @@ function obj.update(dt)
     elseif v.name == "hardrock" then
       if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
         obj.speed = 0.4
-        obj.rockshake = obj.rockshake + 0.2
+        obj.rockshake = obj.rockshake + 0.2*dt
         foundrock = true
         hitrock = v
         
@@ -52,7 +52,7 @@ function obj.update(dt)
     elseif v.name == "gem" then
       if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
         obj.speed = 0.4
-        obj.rockshake = obj.rockshake + 0.2
+        obj.rockshake = obj.rockshake + 0.2*dt
         foundrock = true
         hitrock = v
         
@@ -60,7 +60,7 @@ function obj.update(dt)
     elseif v.name == "worm" then
       if (helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-20,y=v.y-20,width=60*(v.length+1),height=40}) and v.left) or (helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-(60*(v.length+1)),y=v.y-20,width=60*(v.length+1),height=40}) and v.left == false) then
         obj.speed = 0.4
-        obj.rockshake = obj.rockshake + 0.2
+        obj.rockshake = obj.rockshake + 0.2*dt
         foundrock = true
         hitrock = v
         
@@ -68,7 +68,7 @@ function obj.update(dt)
     elseif v.name == "wormsmall" then
       if (helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-16,y=v.y-16,width=30*(v.length+1),height=30}) and v.left) or (helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-(30*(v.length+1)),y=v.y-16,width=30*(v.length+1),height=30}) and v.left == false) then
         obj.speed = 0.4
-        obj.rockshake = obj.rockshake + 0.2
+        obj.rockshake = obj.rockshake + 0.2*dt
         foundrock = true
         hitrock = v
         
@@ -78,7 +78,7 @@ function obj.update(dt)
   if foundrock then
     hitrock.myshake = obj.myshake + obj.rockshake
   else
-    obj.rockshake = obj.rockshake / 2
+    obj.rockshake = obj.rockshake / 2*dt
     if obj.rockshake <= 0.25 then
       obj.rockshake = 0
     end

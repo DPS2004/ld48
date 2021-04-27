@@ -29,13 +29,13 @@ function obj.update(dt)
   obj.hit = false
   if obj.left then
     if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-20,y=obj.y-20,width=60*(obj.length+1),height=40}) then
-      obj.hp = obj.hp - 1
+      obj.hp = obj.hp - 1*dt
       obj.hit = true
       obj.spr.f = 2
     end
   else
     if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-(60*(obj.length+1)),y=obj.y-20,width=60*(obj.length+1),height=40}) then
-      obj.hp = obj.hp - 1
+      obj.hp = obj.hp - 1*dt
       obj.hit = true
       obj.spr.f = 2
     end
@@ -43,9 +43,9 @@ function obj.update(dt)
     
   if not obj.hit then
     if obj.left then
-      obj.x = obj.x - obj.speed
+      obj.x = obj.x - obj.speed*dt
     else
-      obj.x = obj.x + obj.speed
+      obj.x = obj.x + obj.speed*dt
     end
     obj.spr.f = 1
   end

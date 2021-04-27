@@ -26,7 +26,7 @@ function obj.update(dt)
   
   if helpers.collide({x=cs.player.x, y=cs.player.y, width=0, height=0},{x=obj.x-20,y=obj.y-15,width=40,height=30}) then
     --print("hit!")
-    obj.hp = obj.hp - 1
+    obj.hp = obj.hp - 1*dt
   end
   if obj.hp <= 0 then
     obj.delete = true

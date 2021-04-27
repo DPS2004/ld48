@@ -29,8 +29,8 @@ function obj.update(dt)
     end
     obj.init = true
   end
-  obj.x = obj.x + obj.dx
-  obj.y = obj.y + obj.dy
+  obj.x = obj.x + obj.dx*dt
+  obj.y = obj.y + obj.dy*dt
   
   obj.myshake = 0
 

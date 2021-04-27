@@ -17,7 +17,7 @@ function love.load()
 love.graphics.setDefaultFilter("nearest", "nearest")
   love.graphics.setFont(font)
   -- accurate deltatime
-  acdelt = false
+  acdelt = true
 
   -- import libraries
   
@@ -222,8 +222,8 @@ function love.update(d)
     else
       dt = d * 60
     end
-    if dt >=2 then
-      dt = 2
+    if dt >=6 then
+      dt = 6
     end
     cs.update(dt)
     te.cleanup()

@@ -45,13 +45,13 @@ function st.update()
       
     end
     if st.status == "eruptstart" then
-      st.camera.shake = st.camera.shake + 0.025
+      st.camera.shake = st.camera.shake + 0.025*dt
     end
-    flux.update(1)
+    flux.update(dt)
     em.update(dt)
     
-    st.border.update(1)
-    st.bg.update(1)  -- cringe and hacky workaround :)
+    st.border.update(dt)
+    st.bg.update(dt)  -- cringe and hacky workaround :)
     
     if st.finished then
       local retainshake = cs.camera.shake
@@ -67,7 +67,7 @@ function st.update()
 
       
       cs.init()
-      st.bg.update(1)
+      st.bg.update(dt)
       cs.bg.y = cameraheight
       cs.border.y = cameraheight
       cs.camera.shake = retainshake

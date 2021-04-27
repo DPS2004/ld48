@@ -51,15 +51,15 @@ function st.update()
   --st.camera.shake = 0
   if not paused then
     
-    flux.update(1)
+    flux.update(dt)
     --print("mainstate update")
     em.update(dt)
     
     st.camera.y = cameraheight-st.player.y
     st.cx = st.camera.x
     st.cy = st.camera.y -- TODO: camera shake
-    st.border.update(1)
-    st.bg.update(1)  -- cringe and hacky workaround :)
+    st.border.update(dt)
+    st.bg.update(dt)  -- cringe and hacky workaround :)
     
     if st.lose then
       entities = {}

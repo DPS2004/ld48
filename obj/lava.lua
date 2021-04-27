@@ -18,9 +18,9 @@ function obj.update(dt)
     obj.y = obj.y + dt*3
     for k,v in pairs(obj.timers) do
       
-      obj.timers[k] = obj.timers[k] - 1 --????
+      obj.timers[k] = obj.timers[k] - dt --????
     end
-    obj.timer = obj.timer - 1
+    obj.timer = obj.timer - dt
     
     
   end
@@ -28,7 +28,8 @@ function obj.update(dt)
     obj.y = cs.player.y - 250
     if nostress then
       for k,v in pairs(obj.timers) do
-        obj.timers[k] = obj.timers[k] - 1 
+        obj.timers[k] = obj.timers[k] - dt
+        obj.timer = obj.timer - dt
       end
     end
   end
