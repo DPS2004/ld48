@@ -159,10 +159,10 @@ function obj.update(dt)
     end
   obj.timer =love.math.random(50,100)
   end
-  if maininput:pressed("k3") then
-    em.init("upworm",{x=math.random(32,370),y=obj.y+800})
-    print("upworm spawn") --whats upworm? nothing much how about you LMAOOOOOOOOOOOOOOOOOOOOO
-  end
+--  if maininput:pressed("k3") then
+--    em.init("upworm",{x=math.random(32,370),y=obj.y+800})
+--    print("upworm spawn") --whats upworm? nothing much how about you LMAOOOOOOOOOOOOOOOOOOOOO
+--  end
 end
 
 

@@ -4,7 +4,8 @@ local obj = {
   x=0,
   y=0,
   spr = sprites.title.instructions,
-  i=0
+  i=0,
+  txt = loc.get("introtext")
 }
 
 
@@ -14,7 +15,7 @@ end
 
 
 function obj.draw()
-  love.graphics.draw(obj.spr,obj.x,obj.y,0,2,2)
+  love.graphics.printf(obj.txt,0,obj.y + 200,200,"center",0,2,2)
   
 end
 

@@ -24,13 +24,18 @@ local obj = {
     "oh wow haha awesome",
     "Love2d is cool!",
     "haha drill go brrrrrr",
-    "No, I dont have Gunboots. Stop asking.",
+    "No, I don't have Gunboots. Stop asking.",
     "Drilling with Style",
     "Kid Tested. Mother Approved.",
     "Bedrock is just a suggestion",
     "All your drill are belong to us",
     "Apply directly to the forehead",
-    "EIGHT-FOOT VERTICAL LEAP"
+    "EIGHT-FOOT VERTICAL LEAP",
+    "Who needs volcano insurance?",
+    "Up isn't a real direction.",
+    "Filled with essential minerals!",
+    "Give me drills or give me death",
+    "Featuring Drillmin from the Drillmin series"
   },
   cline = "error!!!!",
   init = false
@@ -52,8 +57,6 @@ function obj.draw()
   love.graphics.printf(obj.cline,104,obj.y + 122,148,"center",0,2,2)
   love.graphics.printf(obj.cline,102,obj.y + 124,148,"center",0,2,2)
   love.graphics.printf(obj.cline,106,obj.y + 124,148,"center",0,2,2)
-
-
   love.graphics.setColor(0,0,0)
   love.graphics.printf(obj.cline,104,obj.y + 124,148,"center",0,2,2)
   
