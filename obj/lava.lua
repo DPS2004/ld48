@@ -35,7 +35,13 @@ function obj.update(dt)
   end
   --catch up with player
   if obj.timer <= 0 then
+    local shuffled = {}
     for k,v in pairs(obj.timers) do
+      local pos = love.math.random(1, #shuffled+1)
+      table.insert(shuffled, pos, k)
+    end
+    for j,k in ipairs(shuffled) do
+      local v = obj.timers[k]
       if v <= 0 then
         if k == "randomrock" then
           em.init("rock",{x=love.math.random(32,370),y=obj.y+800})
