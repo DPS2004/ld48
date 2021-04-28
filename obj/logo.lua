@@ -27,7 +27,10 @@ local obj = {
     "No, I dont have Gunboots. Stop asking.",
     "Drilling with Style",
     "Kid Tested. Mother Approved.",
-    "Bedrock is just a suggestion"
+    "Bedrock is just a suggestion",
+    "All your drill are belong to us",
+    "Apply directly to the forehead",
+    "EIGHT-FOOT VERTICAL LEAP"
   },
   cline = "error!!!!",
   init = false
@@ -37,7 +40,7 @@ local obj = {
 function obj.update(dt)
   if not obj.init then
     obj.init = true
-    obj.cline = obj.taglines[math.random(1,#obj.taglines)]
+    obj.cline = obj.taglines[love.math.random(1,#obj.taglines)]
   end
 end
 
