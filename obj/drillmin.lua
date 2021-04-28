@@ -81,6 +81,14 @@ function obj.update(dt)
         hitrock = v
         
       end
+    elseif v.name == "softrock" then
+      if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
+        obj.speed = 0.75
+        obj.rockshake = obj.rockshake + 0.5*dt
+        foundrock = true
+        hitrock = v
+        
+      end
     end
   end
   if foundrock then

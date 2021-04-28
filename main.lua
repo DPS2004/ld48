@@ -119,6 +119,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     warning = love.graphics.newImage("assets/warning.png"),
     gem = love.graphics.newImage("assets/gem.png"),
     hardrock = love.graphics.newImage("assets/hardrock.png"),
+    softrock = love.graphics.newImage("assets/softrock.png"),
     gradient = love.graphics.newImage("assets/gradient.png"),
     lava = love.graphics.newImage("assets/lava.png"),
     bg = love.graphics.newImage("assets/bg.png"),

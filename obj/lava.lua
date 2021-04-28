@@ -8,7 +8,7 @@ local obj = {
   
   myshake = 0,
   timer = 0,
-  timers = {randomrock=0,upworm = 400, randomhardrock = 100,gem=100, rockcluster = 200,tunnel = 300,funnel=400,worm=100,wormsmall = 100,}
+  timers = {randomrock=0,upworm = 400, randomhardrock = 100,softrocks = 300,gem=100, rockcluster = 200,tunnel = 300,funnel=400,worm=100,wormsmall = 100,}
 }
 
 
@@ -151,6 +151,18 @@ function obj.update(dt)
           em.init("upworm",{x=spawnx,y=obj.y+800})
           obj.timers[k] =love.math.random(1200,1300) 
           print("upworm spawn") --whats upworm? nothing much how about you LMAOOOOOOOOOOOOOOOOOOOOO
+          break
+        end
+        if k == "softrocks" then
+          local spawnx = math.random(32,370)
+          local xpos =love.math.random(32+42,370-42)
+          em.init("softrock",{x=xpos-21,y=obj.y+800})
+          em.init("softrock",{x=xpos+21,y=obj.y+800})
+          em.init("softrock",{x=xpos-21,y=obj.y+842})
+          em.init("softrock",{x=xpos+21,y=obj.y+842})
+
+          obj.timers[k] =love.math.random(200,400) 
+          print("softrocks spawn")
           break
         end
         
