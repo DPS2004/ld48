@@ -11,10 +11,15 @@ function st.init()
   st.instructions = em.init("instructions",{})
   st.optionstxt = {
     loc.get("back"),
-    loc.get("invertedcontrols"),
-    loc.get("staticdeltatime")
+    loc.get("gameplay"),
+    loc.get("audio"),
+    loc.get("credits"),
   }
   st.optionsindex = 1
+  st.optionsmenu = 0
+  st.on = loc.get("on")
+  st.off = loc.get("off")
+  st.warning = loc.get("warning")
   st.camera = {x=0,y=240,shake=0}
   st.cx = 0
   st.cy = 240
@@ -66,6 +71,81 @@ function st.update()
       end
       if maininput:pressed("up") then
         st.optionsindex = st.optionsindex - 1
+      end
+      
+      if maininput:pressed("accept") then
+        if st.optionsmenu == 0 then
+          if st.optionsindex == 1 then
+            st.status = "calm"
+            flux.to(st.logo,60,{y=0}):ease("outQuint"):oncomplete(function() end)
+            flux.to(st.instructions,60,{y=0}):ease("outQuint"):oncomplete(function() end)
+            flux.to(st,120,{cy=240}):ease("outQuint"):oncomplete(function()  end)
+          elseif st.optionsindex == 2 then
+            st.optionsmenu = 1
+            st.optionsindex = 1
+            st.optionstxt = {
+              loc.get("back"),
+              loc.get("invertedcontrols"),
+              loc.get("staticdeltatime"),
+            }
+          elseif st.optionsindex == 3 then
+            st.optionsmenu = 2
+            st.optionsindex = 1
+            st.optionstxt = {
+              loc.get("back"),
+              loc.get("musicvolume"),
+              loc.get("sfxvolume"),
+            }
+          elseif st.optionsindex == 4 then
+            -- todo
+          end
+          
+        elseif st.optionsmenu == 1 then
+          if st.optionsindex == 1 then
+            st.optionsmenu = 0
+            st.optionsindex = 1
+            st.optionstxt = {
+              loc.get("back"),
+              loc.get("gameplay"),
+              loc.get("audio"),
+              loc.get("credits"),
+            }
+          elseif st.optionsindex == 2 then
+            options.invertedcontrols = not options.invertedcontrols
+          elseif st.optionsindex == 3 then
+            acdelt = not acdelt
+          end
+        elseif st.optionsmenu == 2 then
+          if st.optionsindex == 1 then
+            st.optionsmenu = 0
+            st.optionsindex = 1
+            st.optionstxt = {
+              loc.get("back"),
+              loc.get("gameplay"),
+              loc.get("audio"),
+              loc.get("credits"),
+            }
+          elseif st.optionsindex == 2 then
+            
+          elseif st.optionsindex == 3 then
+            
+          end
+        end
+      end
+      
+      if st.optionsindex == 0 then
+        st.optionsindex = 1
+        st.optionsmenu = 0
+        st.status = "calm"
+        st.optionstxt = {
+          loc.get("back"),
+          loc.get("gameplay"),
+          loc.get("audio"),
+          loc.get("credits"),
+        }
+        flux.to(st.logo,60,{y=0}):ease("outQuint"):oncomplete(function() end)
+        flux.to(st.instructions,60,{y=0}):ease("outQuint"):oncomplete(function() end)
+        flux.to(st,120,{cy=240}):ease("outQuint"):oncomplete(function()  end)
       end
 
       st.optionsindex = ((st.optionsindex - 1) % #st.optionstxt) +1
@@ -138,14 +218,63 @@ function st.draw()
   if st.status ~= "eruptstart" then
     for i,v in ipairs(st.optionstxt) do
       love.graphics.setColor(0,0,0)
-      love.graphics.printf(v,44,2+st.cy+ i*20,148,"left",0,2,2)
-      love.graphics.printf(v,44,-2+st.cy+ i*20,148,"left",0,2,2)
-      love.graphics.printf(v,42,0+st.cy+ i*20,148,"left",0,2,2)
-      love.graphics.printf(v,46,0+st.cy+ i*20,148,"left",0,2,2)
+      for h=-1,1 do
+        for j=-1,1 do
+          love.graphics.printf(v,44+h*2,j*2+st.cy+ i*20,148,"left",0,2,2)
+        end
+      end
       love.graphics.setColor(1,1,1)
       love.graphics.printf(v,44,0+st.cy+ i*20,148,"left",0,2,2)
       
-      ez.draw(st.cursorspr,28,st.optionsindex*20+st.cy+2,0,2,2)
+      
+    end
+    
+    ez.draw(st.cursorspr,28,st.optionsindex*20+st.cy+2,0,2,2)
+    
+    if st.optionsmenu == 1 then
+      if st.optionsindex == 2 then
+        
+        local txt = st.off
+        if options.invertedcontrols then
+          txt = st.on
+        end
+        love.graphics.setColor(0,0,0)
+        for i=-1,1 do
+          for j=-1,1 do
+            love.graphics.printf(txt,44+i*2,j*2+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+          end
+        end
+        love.graphics.setColor(1,1,1)
+        love.graphics.printf(txt,44,0+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+        
+      elseif st.optionsindex == 3 then
+
+        local txt = st.off
+        if acdelt then
+          txt = st.on
+        end
+        love.graphics.setColor(0,0,0)
+        for i=-1,1 do
+          for j=-1,1 do
+            love.graphics.printf(txt,44+i*2,j*2+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+            love.graphics.printf(st.warning,i*2,196+j*2,200,"center",0,2,2)
+          end
+        end
+        
+        love.graphics.setColor(1,1,1)
+        
+        love.graphics.printf(txt,44,0+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+        love.graphics.printf(st.warning,0,196,200,"center",0,2,2)
+
+      end
+    elseif st.optionsmenu == 2 then
+      if st.optionsindex == 1 then
+
+      elseif st.optionsindex == 2 then
+        
+      elseif st.optionsindex == 3 then
+        
+      end
     end
   end
 

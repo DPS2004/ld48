@@ -4,6 +4,12 @@
     "en": "press space to start\npress down for options",
   },
   "****************OPTIONS*******************":{},
+  "gameplay": {
+    "en": "gameplay",
+  },
+  "audio": {
+    "en": "audio",
+  },
   "invertedcontrols": {
     "en": "inverted controls",
   },
@@ -12,9 +18,23 @@
   },
   
   "warning": {
-    "en": "WARNING: This option may cause the game to behave strangely!",
+    "en": "WARNING: Turning this option off may cause the game to behave strangely!",
   },
-  
+  "credits": {
+    "en": "credits",
+  },
+  "musicvolume": {
+    "en": "music volume",
+  },
+  "sfxvolume": {
+    "en": "sfx volume",
+  },
+  "on": {
+    "en": "on",
+  },
+  "off": {
+    "en": "off",
+  },
   
   
   

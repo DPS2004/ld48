@@ -8,7 +8,7 @@ local obj = {
   
   myshake = 0,
   timer = 0,
-  timers = {randomrock=0,upworm = 400, randomhardrock = 100,softrocks = 300,gem=100, rockcluster = 200,tunnel = 300,funnel=400,worm=100,wormsmall = 100,}
+  timers = {randomrock=0,upworm = 400, randomhardrock = 100,softrocks = 300,gem=100, rockcluster = 200,tunnel = 300,funnel=400,split = 400,worm=100,wormsmall = 100,}
 }
 
 
@@ -165,7 +165,67 @@ function obj.update(dt)
           print("softrocks spawn")
           break
         end
-        
+        if k == "split" then
+
+          em.init("rock",{x=32+42*4,y=obj.y+800})
+          
+          em.init("rock",    {x=32+42*3,y=obj.y+800+42*1})
+          em.init("hardrock",{x=32+42*4,y=obj.y+800+42*1})
+          em.init("rock",    {x=32+42*5,y=obj.y+800+42*1})
+          
+          em.init("rock",    {x=32+42*2,y=obj.y+800+42*2})
+          em.init("hardrock",{x=32+42*3,y=obj.y+800+42*2})
+          em.init("hardrock",{x=32+42*4,y=obj.y+800+42*2})
+          em.init("hardrock",{x=32+42*5,y=obj.y+800+42*2})
+          em.init("rock",    {x=32+42*6,y=obj.y+800+42*2})
+          
+          em.init("rock",    {x=32+42*1,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*2,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*3,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*4,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*5,y=obj.y+800+42*3})
+          em.init("hardrock",{x=32+42*6,y=obj.y+800+42*3})
+          em.init("rock",    {x=32+42*7,y=obj.y+800+42*3})
+          
+          if not tatemode then
+            local newpart1 = em.init("particle",{x=32+42*4,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+            flux.to(newpart1,30,{y=140}):ease("outExpo"):oncomplete(function() 
+              flux.to(newpart1,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                newpart1.delete = true 
+              end)
+            end)
+            local newpart2 = em.init("particle",{x=32+42*3,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+            flux.to(newpart2,40,{y=140}):ease("outExpo"):oncomplete(function() 
+              flux.to(newpart2,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                newpart2.delete = true 
+              end)
+            end)
+            local newpart3 = em.init("particle",{x=32+42*5,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+            flux.to(newpart3,40,{y=140}):ease("outExpo"):oncomplete(function() 
+              flux.to(newpart3,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                newpart3.delete = true 
+              end)
+            end)
+           local newpart4 = em.init("particle",{x=32+42*2,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+            flux.to(newpart4,50,{y=140}):ease("outExpo"):oncomplete(function() 
+              flux.to(newpart4,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                newpart4.delete = true 
+              end)
+            end)
+            local newpart5 = em.init("particle",{x=32+42*6,y=260,spr=sprites.warning,dx=0,dy=0,ptype="warning"})
+            flux.to(newpart5,50,{y=140}):ease("outExpo"):oncomplete(function() 
+              flux.to(newpart5,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                newpart5.delete = true 
+              end)
+            end)
+          end
+
+          
+          obj.timers[k] =love.math.random(1000,1200) 
+          print("split spawn")
+          break
+        end
+
         
       end
     end

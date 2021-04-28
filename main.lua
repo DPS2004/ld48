@@ -1,7 +1,7 @@
 function love.load()
   dt = 1
 
-  gamename = "ld48"
+  gamename = "Drillmin"
   
   pressed = 0
   mx,my = 0,0
@@ -161,6 +161,11 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     worm = ez.newtemplate("worm.png",32,0,false),
     wormsmall = ez.newtemplate("wormsmall.png",16,0,false),
     cursor = ez.newtemplate("cursor.png",8,3,true)
+  }
+  
+  
+  options = {
+    invertedcontrols = false
   }
 
   --setup input

@@ -19,12 +19,22 @@ function obj.update(dt)
   obj.canim = "down"
   obj.scorei = obj.scorei + dt
   if maininput:down("left") then
-    obj.r = obj.r - 2*dt
-    obj.canim = "left"
+    if not options.invertedcontrols then
+      obj.r = obj.r - 2*dt
+      obj.canim = "left"
+    else
+      obj.r = obj.r + 2*dt
+      obj.canim = "right"
+    end
   end
   if maininput:down("right") then
-    obj.r = obj.r + 2*dt
-    obj.canim = "right"
+    if not options.invertedcontrols then
+      obj.r = obj.r + 2*dt
+      obj.canim = "right"      
+    else
+      obj.r = obj.r - 2*dt
+      obj.canim = "left"
+    end
   end
   
   obj.speed = 4

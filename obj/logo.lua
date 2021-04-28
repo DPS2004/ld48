@@ -35,7 +35,8 @@ local obj = {
     "Up isn't a real direction.",
     "Filled with essential minerals!",
     "Give me drills or give me death",
-    "Featuring Drillmin from the Drillmin series"
+    "Featuring Drillmin from the Drillmin series",
+    "The man who sleeps with a drill is a fool every night but one"
   },
   cline = "error!!!!",
   init = false
