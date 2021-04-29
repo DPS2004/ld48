@@ -1,5 +1,5 @@
 function love.conf(t)
-  release = true
+  release = false
   t.externalstorage = true
   gameWidth, gameHeight = 400,240 
   windowWidth, windowHeight = 800, 480

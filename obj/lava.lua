@@ -8,7 +8,7 @@ local obj = {
   
   myshake = 0,
   timer = 0,
-  timers = {randomrock=0,upworm = 400, randomhardrock = 100,softrocks = 300,gem=100, rockcluster = 200,tunnel = 300,funnel=400,split = 400,worm=100,wormsmall = 100,}
+  timers = {randomrock=0,upworm = 400, randomhardrock = 100,softrocks = 300,gem=100, rockcluster = 200,tunnel = 300,funnel=400,split = 400,worm=100,wormsmall = 100,booster = 350}
 }
 
 
@@ -40,6 +40,7 @@ function obj.update(dt)
       local pos = love.math.random(1, #shuffled+1)
       table.insert(shuffled, pos, k)
     end
+    local timerdelay = 0
     for j,k in ipairs(shuffled) do
       local v = obj.timers[k]
       if v <= 0 then
@@ -92,7 +93,9 @@ function obj.update(dt)
           end
           obj.timers[k] =love.math.random(500,600) 
           print("tunnel spawn")
+          timerdelay = 50
           break
+          
         end
         if k == "funnel" then
           local xpos =love.math.random(32+42,370-42)
@@ -122,7 +125,9 @@ function obj.update(dt)
           
           obj.timers[k] =love.math.random(1000,1200) 
           print("funnel spawn")
+          timerdelay = 50
           break
+          
         end
         if k == "worm" then
           if love.math.random(0,1) == 1 then
@@ -226,16 +231,32 @@ function obj.update(dt)
             end)
           end
 
-          
+          timerdelay = 50
           obj.timers[k] =love.math.random(1000,1200) 
           print("split spawn")
           break
+          
         end
-
+        if k == "booster" then
+          local spawnx = math.random(32,370)
+          em.init("booster",{x=spawnx,y=obj.y+800})
+          obj.timers[k] =love.math.random(1000,1100) 
+          print("booster spawn")
+          if not tatemode then
+            local newpart = em.init("particle",{x=spawnx,y=260,spr=sprites.boostwarning,dx=0,dy=0,ptype="warning"})
+            flux.to(newpart,30,{y=140}):ease("outExpo"):oncomplete(function() 
+              flux.to(newpart,30,{y=-16}):ease("inExpo"):oncomplete(function()
+                newpart.delete = true 
+              end)
+            end)
+          end
+          break
+          
+        end
         
       end
     end
-  obj.timer =love.math.random(50,100)
+  obj.timer =love.math.random(50,100) +timerdelay
   end
 --  if maininput:pressed("k3") then
 --    em.init("upworm",{x=math.random(32,370),y=obj.y+800})

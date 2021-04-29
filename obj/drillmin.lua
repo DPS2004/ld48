@@ -10,12 +10,14 @@ local obj = {
   i=0,
   scorei=0,
   rockshake = 0,
-  myshake = 0
+  myshake = 0,
+  boost = -1
 }
 
 
 function obj.update(dt)
   obj.myshake = 0
+  obj.scoredelay = 8
   obj.canim = "down"
   obj.scorei = obj.scorei + dt
   if maininput:down("left") then
@@ -36,6 +38,7 @@ function obj.update(dt)
       obj.canim = "left"
     end
   end
+  obj.boost = obj.boost - dt*0.25
   
   obj.speed = 4
   local foundrock = false
@@ -97,12 +100,25 @@ function obj.update(dt)
         obj.rockshake = obj.rockshake + 0.5*dt
         foundrock = true
         hitrock = v
+      end
+    elseif v.name == "booster" then
+      if helpers.collide({x=obj.x, y=obj.y, width=0, height=0},{x=v.x-19,y=v.y-19,width=38,height=38}) then
+        obj.speed = 0.75
+        obj.rockshake = obj.rockshake + 0.5*dt
+        foundrock = true
+        hitrock = v
         
       end
     end
   end
   if foundrock then
     hitrock.myshake = obj.myshake + obj.rockshake
+    if obj.boost >= 0 then
+      hitrock.hp = hitrock.hp / 2
+      obj.boost = obj.boost - dt*0.5
+      obj.scoredelay = 1
+      cs.scoreflash = true
+    end
   else
     obj.rockshake = obj.rockshake / 2*dt
     if obj.rockshake <= 0.25 then
@@ -111,8 +127,13 @@ function obj.update(dt)
   end
   obj.myshake = obj.myshake + obj.rockshake
   
-  
-  
+  if obj.boost >=0 then
+    obj.speed = obj.speed * 2
+    if obj.scoredelay ~= 1 then
+      obj.scoredelay = 2
+    end
+    cs.scoreflash = true
+  end
   
   local rret = helpers.rotate(obj.speed*dt*-1,obj.r,obj.x,obj.y)
   obj.x = rret[1]
@@ -131,15 +152,16 @@ function obj.update(dt)
     cs.lose = true
     
   end
-  
-  if cs.lava.y +80 >= obj.y then
-    obj.scoredelay = 4
-    cs.scoreflash = true
-    
-  else
-    obj.scoredelay = 8
+  if obj.scoredelay > 2 then
+    if cs.lava.y +80 >= obj.y then
+      obj.scoredelay = 4
+      cs.scoreflash = true
+      
+    else
+      obj.scoredelay = 8
+    end
   end
-  
+  print(obj.scoredelay)
   if obj.scorei >=obj.scoredelay then
     obj.scorei = 0
     if obj.foundrock then
