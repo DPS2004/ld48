@@ -1,0 +1,46 @@
+----Game Design and Programming----
+
+DPS2004
+
+----Art----
+
+DPS2004
+
+----Music----
+
+DPS2004
+bunner
+
+----Tools used----
+
+Audacity
+Famitracker
+FL Studio
+Magical 8bit Plug
+
+Paint.net
+Piskel
+
+Zerobrane Studio
+
+----Libraries----
+
+Baton by tesselode
+flux by rxi
+json.lua by rxi
+lovebird by rxi
+TEsound by Taehl
+
+Web port made possible with love.js by Davidobot
+
+----Special Thanks----
+
+huantian
+megaminerzero
+ThatOneGuy
+pipelinks
+saladplainzone
+DeadlySprinklez
+Squidly
+The Love2d Discord server
+You!

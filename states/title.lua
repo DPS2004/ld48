@@ -23,7 +23,9 @@ function st.init()
   st.camera = {x=0,y=240,shake=0}
   st.cx = 0
   st.cy = 240
+  st.creditsplaying = false
   st.cursorspr = ez.newanim(templates.cursor)
+  st.credits = love.filesystem.read("credits.txt")
 end
 
 function st.enter(prev)
@@ -66,10 +68,10 @@ function st.update()
         flux.to(st.instructions,60,{y=0}):ease("outQuint"):oncomplete(function() end)
         flux.to(st,120,{cy=240}):ease("outQuint"):oncomplete(function()  end)
       end
-      if maininput:pressed("down") then
+      if maininput:pressed("down") and not st.creditsplaying then
         st.optionsindex = st.optionsindex + 1
       end
-      if maininput:pressed("up") then
+      if maininput:pressed("up") and not st.creditsplaying then
         st.optionsindex = st.optionsindex - 1
       end
       
@@ -103,7 +105,15 @@ function st.update()
               }
             end
           elseif st.optionsindex == 4 then
-            -- todo
+            if maininput:pressed("accept") then
+              if not st.creditsplaying then
+                st.creditsplaying = true
+                flux.to(st,1400,{cy=-1400}):ease("linear"):oncomplete(function() st.cy = 0 st.creditsplaying = false end)
+              else
+                st.creditsplaying = false
+                flux.to(st,0,{cy=0}):ease("linear"):oncomplete(function()  end)
+              end
+            end
           end
           
         elseif st.optionsmenu == 1 then
@@ -331,6 +341,14 @@ function st.draw()
         love.graphics.printf(txt,44,0+st.cy+ st.optionsindex*20,148,"right",0,2,2)
       end
     end
+    love.graphics.setColor(0,0,0)
+    for i=-1,1 do
+      for j=-1,1 do
+        love.graphics.printf(st.credits,i*2,240+st.cy+j*2,200,"center",0,2,2)
+      end
+    end
+    love.graphics.setColor(1,1,1)
+    love.graphics.printf(st.credits,0,240+st.cy,200,"center",0,2,2)
   end
 
 
