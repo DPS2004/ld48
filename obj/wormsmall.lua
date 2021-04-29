@@ -50,7 +50,7 @@ function obj.update(dt)
     obj.spr.f = 1
   end
   if obj.hp <= 0 then
-    te.play("assets/sounds/destroy.ogg","static")
+    te.play("assets/sounds/destroy.ogg","static","sfx")
     cs.score = cs.score + 500
     cs.scoreflash = true
     obj.delete =true

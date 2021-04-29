@@ -165,7 +165,11 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   
   
   options = {
-    invertedcontrols = false
+    invertedcontrols = false,
+    volume = {
+      bgm = 1,
+      sfx = 1
+    }
   }
 
   --setup input

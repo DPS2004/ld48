@@ -50,7 +50,7 @@ function st.update()
       st.volcano.canim = "erupt"
       st.dmcutscene.canim = "grabdrill"
       te.stop("bgm")
-      te.play("assets/sounds/erupt.ogg","static")
+      te.play("assets/sounds/erupt.ogg","static","sfx")
       flux.to(st.logo,60,{y=-240}):ease("inQuint"):oncomplete(function() st.logo.delete = true end)
       flux.to(st.instructions,60,{y=40}):ease("inQuint"):oncomplete(function() st.instructions.delete = true end)
       
@@ -73,61 +73,98 @@ function st.update()
         st.optionsindex = st.optionsindex - 1
       end
       
-      if maininput:pressed("accept") then
+      if maininput:pressed("accept") or maininput:pressed("left") or maininput:pressed("right") then
         if st.optionsmenu == 0 then
           if st.optionsindex == 1 then
-            st.status = "calm"
-            flux.to(st.logo,60,{y=0}):ease("outQuint"):oncomplete(function() end)
-            flux.to(st.instructions,60,{y=0}):ease("outQuint"):oncomplete(function() end)
-            flux.to(st,120,{cy=240}):ease("outQuint"):oncomplete(function()  end)
+            if maininput:pressed("accept") then
+              st.status = "calm"
+              flux.to(st.logo,60,{y=0}):ease("outQuint"):oncomplete(function() end)
+              flux.to(st.instructions,60,{y=0}):ease("outQuint"):oncomplete(function() end)
+              flux.to(st,120,{cy=240}):ease("outQuint"):oncomplete(function()  end)
+            end
           elseif st.optionsindex == 2 then
-            st.optionsmenu = 1
-            st.optionsindex = 1
-            st.optionstxt = {
-              loc.get("back"),
-              loc.get("invertedcontrols"),
-              loc.get("staticdeltatime"),
-            }
+            if maininput:pressed("accept") then
+              st.optionsmenu = 1
+              st.optionsindex = 1
+              st.optionstxt = {
+                loc.get("back"),
+                loc.get("invertedcontrols"),
+                loc.get("staticdeltatime"),
+              }
+            end
           elseif st.optionsindex == 3 then
-            st.optionsmenu = 2
-            st.optionsindex = 1
-            st.optionstxt = {
-              loc.get("back"),
-              loc.get("musicvolume"),
-              loc.get("sfxvolume"),
-            }
+            if maininput:pressed("accept") then
+              st.optionsmenu = 2
+              st.optionsindex = 1
+              st.optionstxt = {
+                loc.get("back"),
+                loc.get("musicvolume"),
+                loc.get("sfxvolume"),
+              }
+            end
           elseif st.optionsindex == 4 then
             -- todo
           end
           
         elseif st.optionsmenu == 1 then
           if st.optionsindex == 1 then
-            st.optionsmenu = 0
-            st.optionsindex = 1
-            st.optionstxt = {
-              loc.get("back"),
-              loc.get("gameplay"),
-              loc.get("audio"),
-              loc.get("credits"),
-            }
+            if maininput:pressed("accept") then
+              st.optionsmenu = 0
+              st.optionsindex = 1
+              st.optionstxt = {
+                loc.get("back"),
+                loc.get("gameplay"),
+                loc.get("audio"),
+                loc.get("credits"),
+              }
+            end
           elseif st.optionsindex == 2 then
-            options.invertedcontrols = not options.invertedcontrols
+            if maininput:pressed("accept") then
+              options.invertedcontrols = not options.invertedcontrols
+            end
           elseif st.optionsindex == 3 then
-            acdelt = not acdelt
+            if maininput:pressed("accept") then
+              acdelt = not acdelt
+            end
           end
         elseif st.optionsmenu == 2 then
           if st.optionsindex == 1 then
-            st.optionsmenu = 0
-            st.optionsindex = 1
-            st.optionstxt = {
-              loc.get("back"),
-              loc.get("gameplay"),
-              loc.get("audio"),
-              loc.get("credits"),
-            }
+            if maininput:pressed("accept") then
+              st.optionsmenu = 0
+              st.optionsindex = 1
+              st.optionstxt = {
+                loc.get("back"),
+                loc.get("gameplay"),
+                loc.get("audio"),
+                loc.get("credits"),
+              }
+            end
           elseif st.optionsindex == 2 then
-            
+            if maininput:pressed("left") then
+              options.volume.bgm = (options.volume.bgm - 0.1) % 1.1
+            elseif maininput:pressed("right") then
+              options.volume.bgm = (options.volume.bgm + 0.1) % 1.1
+            end
+            if options.volume.bgm < 0.1 or options.volume.bgm > 1 then
+              options.volume.bgm = 0
+            end
+            if options.volume.bgm < 0 then
+              options.volume.bgm = 1
+            end
+            te.volume("bgm", options.volume.bgm)
           elseif st.optionsindex == 3 then
+            if maininput:pressed("left") then
+              options.volume.sfx = (options.volume.sfx - 0.1) 
+            elseif maininput:pressed("right") then
+              options.volume.sfx = (options.volume.sfx + 0.1) 
+            end
+            if options.volume.sfx < 0.1 or options.volume.sfx > 1 then
+              options.volume.sfx = 0
+            end
+            if options.volume.sfx < 0 then
+              options.volume.sfx = 1
+            end
+            te.volume("sfx", options.volume.sfx)
             
           end
         end
@@ -269,11 +306,29 @@ function st.draw()
       end
     elseif st.optionsmenu == 2 then
       if st.optionsindex == 1 then
-
+        
       elseif st.optionsindex == 2 then
+        txt = tostring(options.volume.bgm * 100) .. "%"
+        love.graphics.setColor(0,0,0)
+        for i=-1,1 do
+          for j=-1,1 do
+            love.graphics.printf(txt,44+i*2,j*2+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+          end
+        end
+        love.graphics.setColor(1,1,1)
+        love.graphics.printf(txt,44,0+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+      
         
       elseif st.optionsindex == 3 then
-        
+        txt = tostring(options.volume.sfx * 100) .. "%"
+        love.graphics.setColor(0,0,0)
+        for i=-1,1 do
+          for j=-1,1 do
+            love.graphics.printf(txt,44+i*2,j*2+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+          end
+        end
+        love.graphics.setColor(1,1,1)
+        love.graphics.printf(txt,44,0+st.cy+ st.optionsindex*20,148,"right",0,2,2)
       end
     end
   end
