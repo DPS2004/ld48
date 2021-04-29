@@ -54,10 +54,11 @@ end
 function obj.draw()
   love.graphics.draw(obj.spr,obj.x,obj.y,0,2,2)
   --love.graphics.setColor(1,0,0)
-  love.graphics.printf(obj.cline,104,obj.y + 126,148,"center",0,2,2)
-  love.graphics.printf(obj.cline,104,obj.y + 122,148,"center",0,2,2)
-  love.graphics.printf(obj.cline,102,obj.y + 124,148,"center",0,2,2)
-  love.graphics.printf(obj.cline,106,obj.y + 124,148,"center",0,2,2)
+  for i=-1,1 do
+    for j=-1,1 do
+      love.graphics.printf(obj.cline,104+i*2,obj.y + 124 + j*2,148,"center",0,2,2)
+    end
+  end
   love.graphics.setColor(0,0,0)
   love.graphics.printf(obj.cline,104,obj.y + 124,148,"center",0,2,2)
   
