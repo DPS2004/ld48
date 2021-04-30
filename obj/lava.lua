@@ -19,6 +19,10 @@ function obj.update(dt)
     for k,v in pairs(obj.timers) do
       
       obj.timers[k] = obj.timers[k] - dt --????
+      if cs.player.boost >= 20 then
+        obj.timers[k] = obj.timers[k] - dt
+        obj.timer = obj.timer - dt
+      end
     end
     obj.timer = obj.timer - dt
     

@@ -29,7 +29,7 @@ function obj.update(dt)
     obj.hp = obj.hp - 1*dt
   end
   if obj.hp <= 0 then
-    cs.player.boost = 60
+    cs.player.boost = 80
     obj.delete = true
     te.play("assets/sounds/destroy.ogg","static","sfx")
     cs.score = cs.score + 100

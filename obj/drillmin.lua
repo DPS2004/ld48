@@ -161,7 +161,6 @@ function obj.update(dt)
       obj.scoredelay = 8
     end
   end
-  print(obj.scoredelay)
   if obj.scorei >=obj.scoredelay then
     obj.scorei = 0
     if obj.foundrock then
