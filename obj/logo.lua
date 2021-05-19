@@ -36,7 +36,8 @@ local obj = {
     "Filled with essential minerals!",
     "Give me drills or give me death",
     "Featuring Drillmin from the Drillmin series",
-    "The man who sleeps with a drill is a fool every night but one"
+    "The man who sleeps with a drill is a fool every night but one",
+    "99.56% fun!"
   },
   cline = "error!!!!",
   init = false

@@ -68,7 +68,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 
 
   -- lovebird,debugging console
-  if (not release) or ismobile then 
+  if (not release)  then 
     lovebird = require "lib.lovebird"
   else
     lovebird = require "lib.lovebirdstripped"
@@ -175,34 +175,105 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   }
 
   --setup input
-  ctrls = {
-        left = {"key:left",  "axis:rightx-", "button:dpleft"},
-        right = {"key:right",  "axis:rightx+", "button:dpright"},
-        up = {"key:up", "key:w", "axis:righty-", "button:dpup"},
-        down = {"key:down", "key:s", "axis:righty+", "button:dpdown"},
-        accept = {"key:space", "key:return", "button:a"},
-        back = {"key:escape", "button:b"},
-        f5 = {"key:f5"},
-        k1 = {"key:1"},
-        k2 = {"key:2"},
-        k3 = {"key:3"},
+  if not ismobile then
+    ctrls = {
+          left = {"key:left",  "axis:rightx-", "button:dpleft"},
+          right = {"key:right",  "axis:rightx+", "button:dpright"},
+          up = {"key:up", "key:w", "axis:righty-", "button:dpup"},
+          down = {"key:down", "key:s", "axis:righty+", "button:dpdown"},
+          accept = {"key:space", "key:return", "button:a"},
+          back = {"key:escape", "button:b"},
+          f5 = {"key:f5"},
+          k1 = {"key:1"},
+          k2 = {"key:2"},
+          k3 = {"key:3"},
+          
+          
+          mouse1 = {"mouse:1"},
+          mouse2 = {"mouse:2"},
+          mouse3 = {"mouse:3"}
+        }
         
-        
-        mouse1 = {"mouse:1"},
-        mouse2 = {"mouse:2"},
-        mouse3 = {"mouse:3"}
-      }
-      
 
-      
-  maininput = baton.new {
+        
+    maininput = baton.new {
       controls = ctrls,
       pairs = {
         lr = {"left", "right", "up", "down"}
       },
         joystick = love.joystick.getJoysticks()[1],
     }
+  else
+    maininput = {
+      controls = {left = {false,0},right = {false,0}, down = {false,0}, up = {false,0}, accept = {false,0}},
+      press = function(ctrl)
+        maininput.controls[ctrl][1] = true
+        maininput.controls[ctrl][2] = maininput.controls[ctrl][2] + 1
     
+        
+        
+      end,
+      update = function() 
+        
+        for k,v in pairs(maininput.controls) do
+          v[1] = false
+        end
+        
+        local touches = love.touch.getTouches()
+        
+        for i, id in ipairs(touches) do
+          local x, y = love.touch.getPosition(id)
+          if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+            maininput.press("left")
+          end
+          if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+            maininput.press("right")
+          end
+          if x >= (gameWidth*shuv.scale / 3) + shuv.xoffset and x <= ((gameWidth*shuv.scale / 3)*2) + shuv.xoffset then 
+            maininput.press("accept")
+          end
+        end
+        
+        
+        if love.keyboard.isDown("space") then
+          print("mouse down")
+          local x, y = love.mouse.getPosition()
+
+          if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+            maininput.press("left")
+          end
+          if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+            maininput.press("right")
+          end
+          if x >= (gameWidth*shuv.scale / 3) + shuv.xoffset and x <= ((gameWidth*shuv.scale / 3)*2) + shuv.xoffset then 
+            maininput.press("accept")
+          end
+        end
+        
+        
+        
+        for k,v in pairs(maininput.controls) do
+          if v[2] == -1 then
+            v[2] = 0
+          end
+        end
+        for k,v in pairs(maininput.controls) do
+          if not v[1] then
+            v[2] = -1
+          end
+        end
+      end,
+      pressed = function(self,ctrl)
+        
+        return maininput.controls[ctrl][2] == 1
+        
+      end,
+      down = function(self,ctrl) 
+        return maininput.controls[ctrl][1]
+      end
+     
+    }
+  end
   local seed = 0
   for i=0,math.abs(love.mouse.getX()) do
     seed = seed + love.math.random(0,100)

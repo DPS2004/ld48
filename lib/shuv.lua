@@ -1,6 +1,8 @@
 local shuv = {
   scale = 2,
-  update = true
+  update = true,
+  xoffset = 0,
+  yoffset = 0
 }
 
 
@@ -29,6 +31,7 @@ function shuv.check()
       love.window.setMode(0,0)
       love.window.setFullscreen(true)
       shuv.scale = love.graphics.getHeight() / gameHeight
+      shuv.xoffset = love.graphics.getWidth()/2 - (gameWidth* shuv.scale) / 2
     else
       love.window.setMode(gameWidth*shuv.scale, gameHeight*shuv.scale)
     end
@@ -45,7 +48,7 @@ end
 
 function shuv.finish()
   love.graphics.setCanvas()
-  love.graphics.draw(shuv.canvas,0,0,0,shuv.scale,shuv.scale)
+  love.graphics.draw(shuv.canvas,shuv.xoffset,shuv.yoffset,0,shuv.scale,shuv.scale)
   helpers.doswap()
   tinput = ""
 end
