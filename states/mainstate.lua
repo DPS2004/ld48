@@ -1,4 +1,12 @@
 local st = {}
+
+
+function st.playmusic()
+  te.play("assets/sounds/arp.ogg","stream",{"bgm","arp"},0,1)
+  te.play("assets/sounds/ld48.ogg","stream","bgm",1,1,function(a) st.playmusic() end)
+  
+  
+end
 function st.init()
   print("mainstate init")
   st.player = em.init("drillmin",{x=200,y=0})
@@ -28,7 +36,8 @@ function st.init()
   st.cx = 0
   st.cy = cameraheight
   
-  te.playLooping("assets/sounds/ld48.ogg","stream","bgm")
+  st.playmusic()
+  
 end
 
 
@@ -63,6 +72,12 @@ function st.update()
     st.border.update(dt)
     st.bg.update(dt)  -- cringe and hacky workaround :)
     
+    if st.player.boost >=0 then
+      te.volume("arp", options.volume.bgm*0.6)
+    else
+      te.volume("arp", 0)
+    end
+    
     if st.lose then
       entities = {}
       local savescore = cs.score
@@ -70,6 +85,7 @@ function st.update()
       cs.init()
       cs.savescore = savescore
     end
+    
   end
   
 end
