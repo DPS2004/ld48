@@ -115,18 +115,18 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   --load sprites
   sprites = {
     templateguy = love.graphics.newImage("assets/templateguy.png"),
-    border = love.graphics.newImage("assets/border.png"),
-    rock = love.graphics.newImage("assets/rock.png"),
-    booster = love.graphics.newImage("assets/booster.png"),
-    warning = love.graphics.newImage("assets/warning.png"),
-    boostwarning = love.graphics.newImage("assets/boostwarning.png"),
-    gem = love.graphics.newImage("assets/gem.png"),
-    hardrock = love.graphics.newImage("assets/hardrock.png"),
-    softrock = love.graphics.newImage("assets/softrock.png"),
+    border = love.graphics.newImage("assets/levelobjects/border.png"),
+    rock = love.graphics.newImage("assets/levelobjects/rock.png"),
+    booster = love.graphics.newImage("assets/levelobjects/booster.png"),
+    warning = love.graphics.newImage("assets/particles/warning.png"),
+    boostwarning = love.graphics.newImage("assets/particles/boostwarning.png"),
+    gem = love.graphics.newImage("assets/levelobjects/gem.png"),
+    hardrock = love.graphics.newImage("assets/levelobjects/hardrock.png"),
+    softrock = love.graphics.newImage("assets/levelobjects/softrock.png"),
     gradient = love.graphics.newImage("assets/gradient.png"),
-    lava = love.graphics.newImage("assets/lava.png"),
-    controls = love.graphics.newImage("assets/controls.png"),
-    bg = love.graphics.newImage("assets/bg.png"),
+    lava = love.graphics.newImage("assets/levelobjects/lava.png"),
+    controls = love.graphics.newImage("assets/ui/controls.png"),
+    bg = love.graphics.newImage("assets/levelobjects/bg.png"),
     title = {
       base = love.graphics.newImage("assets/title/base.png"),
       blades = love.graphics.newImage("assets/title/blades.png"),
@@ -163,9 +163,9 @@ love.graphics.setDefaultFilter("nearest", "nearest")
       rock = ez.newtemplate("particles/rock.png",14,0,false),
       worm = ez.newtemplate("particles/worm.png",14,0,false)
     },
-    worm = ez.newtemplate("worm.png",32,0,false),
-    wormsmall = ez.newtemplate("wormsmall.png",16,0,false),
-    cursor = ez.newtemplate("cursor.png",8,3,true)
+    worm = ez.newtemplate("levelobjects/worm.png",32,0,false),
+    wormsmall = ez.newtemplate("levelobjects/wormsmall.png",16,0,false),
+    cursor = ez.newtemplate("ui/cursor.png",8,3,true)
   }
   
   
