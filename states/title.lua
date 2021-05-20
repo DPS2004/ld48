@@ -48,7 +48,7 @@ function st.update()
 
   --st.camera.shake = 0
   if not paused then
-    if (maininput:pressed("accept") or (ismobile and (lt.x <= 266 and maininput:pressed("touch")))) and st.status == "calm" then
+    if (maininput:pressed("accept") or (ismobile and (lt.x <= 266 and maininput:pressed("touch"))) and st.cy >= 230 ) and st.status == "calm" then
       st.status="eruptstart"
       st.volcano.canim = "erupt"
       st.dmcutscene.canim = "grabdrill"
@@ -201,7 +201,7 @@ function st.update()
     
     
     
-    if (maininput:pressed("down") or (ismobile and (lt.x > 266 and maininput:pressed("touch")))) and st.status == "calm" then
+    if (maininput:pressed("down") or (ismobile and (lt.x > 266 and maininput:pressed("touch"))) and st.cy >= 230 ) and st.status == "calm" then
       st.status="options"
 
 

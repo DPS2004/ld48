@@ -218,6 +218,38 @@ love.graphics.setDefaultFilter("nearest", "nearest")
         
         
       end,
+      checkforpresses = function(x,y)
+        if cs.name == "mainstate" then
+          if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+            maininput.press("left")
+          end
+          if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+            maininput.press("right")
+          end
+        elseif cs.name == "title" then
+          if cs.status == "options" and cs.cy <= 10 then
+            
+            if helpers.inrect(40, 70,134,170,lt.x,lt.y) then
+              maininput.press("up")
+            end
+            if helpers.inrect(40, 70,200,236,lt.x,lt.y) then
+              maininput.press("down")
+            end
+            if helpers.inrect(4, 40,170,200,lt.x,lt.y) then
+              maininput.press("left")
+            end
+            if helpers.inrect(70, 106,170,200,lt.x,lt.y) then
+              maininput.press("right")
+            end
+            if helpers.inrect(350, 392,146,188,lt.x,lt.y) then
+              maininput.press("accept")
+            end
+            if helpers.inrect(306, 348,186,228,lt.x,lt.y) then
+              maininput.press("back")
+            end
+          end
+        end
+      end,
       update = function() 
         
         for k,v in pairs(maininput.controls) do
@@ -228,33 +260,27 @@ love.graphics.setDefaultFilter("nearest", "nearest")
         
         for i, id in ipairs(touches) do
           local x, y = love.touch.getPosition(id)
+          
           maininput.press("touch")
-          if cs.name == "mainstate" then
-            if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-              maininput.press("left")
-            end
-            if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-              maininput.press("right")
-            end
-          end
-          lt.x = x/shuv.scale
-          lt.y = y/shuv.scale
+          
+          lt.x = (x- shuv.xoffset)/shuv.scale
+          lt.y = (y-shuv.yoffset)/shuv.scale
+          
+          maininput.checkforpresses(x,y)
+
         end
         
         
         if love.keyboard.isDown("space") then
           local x, y = love.mouse.getPosition()
+          
           maininput.press("touch")
-          if cs.name == "mainstate" then
-            if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-              maininput.press("left")
-            end
-            if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-              maininput.press("right")
-            end
-          end
+          
           lt.x = (x- shuv.xoffset)/shuv.scale
           lt.y = (y-shuv.yoffset)/shuv.scale
+          
+          maininput.checkforpresses(x,y)
+          
         end
         
         
