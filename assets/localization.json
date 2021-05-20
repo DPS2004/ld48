@@ -3,6 +3,12 @@
   "introtext": {
     "en": "press space to start\npress down for options",
   },
+  "play": {
+    "en": "play",
+  },
+  "options": {
+    "en": "options",
+  },
   "****************OPTIONS*******************":{},
   "gameplay": {
     "en": "gameplay",

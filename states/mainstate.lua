@@ -9,6 +9,7 @@ function st.playmusic()
 end
 function st.init()
   print("mainstate init")
+  st.name = "mainstate"
   st.player = em.init("drillmin",{x=200,y=0})
   st.pwhite = em.init("drillminwhite",{x=200,y=0})
   st.border = em.init("border",{x=0,y=0})

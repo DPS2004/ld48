@@ -5,6 +5,7 @@ function love.load()
   
   pressed = 0
   mx,my = 0,0
+  
   ispush = false
   screencenter = {x = gameWidth/2, y = gameHeight/2}
   
@@ -124,6 +125,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     softrock = love.graphics.newImage("assets/softrock.png"),
     gradient = love.graphics.newImage("assets/gradient.png"),
     lava = love.graphics.newImage("assets/lava.png"),
+    controls = love.graphics.newImage("assets/controls.png"),
     bg = love.graphics.newImage("assets/bg.png"),
     title = {
       base = love.graphics.newImage("assets/title/base.png"),
@@ -175,6 +177,9 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   }
 
   --setup input
+  
+  lt={x=0,y=0}
+  
   if not ismobile then
     ctrls = {
           left = {"key:left",  "axis:rightx-", "button:dpleft"},
@@ -205,7 +210,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     }
   else
     maininput = {
-      controls = {left = {false,0},right = {false,0}, down = {false,0}, up = {false,0}, accept = {false,0}},
+      controls = {left = {false,0},right = {false,0}, down = {false,0}, up = {false,0}, accept = {false,0}, touch = {false,0},back = {false,0}},
       press = function(ctrl)
         maininput.controls[ctrl][1] = true
         maininput.controls[ctrl][2] = maininput.controls[ctrl][2] + 1
@@ -223,31 +228,33 @@ love.graphics.setDefaultFilter("nearest", "nearest")
         
         for i, id in ipairs(touches) do
           local x, y = love.touch.getPosition(id)
-          if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-            maininput.press("left")
+          maininput.press("touch")
+          if cs.name == "mainstate" then
+            if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+              maininput.press("left")
+            end
+            if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+              maininput.press("right")
+            end
           end
-          if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-            maininput.press("right")
-          end
-          if x >= (gameWidth*shuv.scale / 3) + shuv.xoffset and x <= ((gameWidth*shuv.scale / 3)*2) + shuv.xoffset then 
-            maininput.press("accept")
-          end
+          lt.x = x/shuv.scale
+          lt.y = y/shuv.scale
         end
         
         
         if love.keyboard.isDown("space") then
-          print("mouse down")
           local x, y = love.mouse.getPosition()
-
-          if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-            maininput.press("left")
+          maininput.press("touch")
+          if cs.name == "mainstate" then
+            if x <= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+              maininput.press("left")
+            end
+            if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
+              maininput.press("right")
+            end
           end
-          if x >= (gameWidth*shuv.scale / 2) + shuv.xoffset then 
-            maininput.press("right")
-          end
-          if x >= (gameWidth*shuv.scale / 3) + shuv.xoffset and x <= ((gameWidth*shuv.scale / 3)*2) + shuv.xoffset then 
-            maininput.press("accept")
-          end
+          lt.x = (x- shuv.xoffset)/shuv.scale
+          lt.y = (y-shuv.yoffset)/shuv.scale
         end
         
         

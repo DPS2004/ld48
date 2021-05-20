@@ -5,6 +5,7 @@ function st.init()
   te.stop("all")
   te.play("assets/sounds/gameover.ogg","stream","bgm",1,1,function(a) te.playLooping("assets/sounds/gameover_loop.ogg","stream","bgm") print("done") end)
   st.savescore = 69
+  st.name = "gameover"
 end
 
 
@@ -21,7 +22,7 @@ end
 
 
 function st.update()
-  if maininput:pressed("accept") then
+  if maininput:pressed("accept") or (ismobile and maininput:pressed("touch"))then
     cs = bs.load("title")
     cs.init()
     cs.bg.y=240

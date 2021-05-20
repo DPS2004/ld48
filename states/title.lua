@@ -1,6 +1,7 @@
 local st = {}
 function st.init()
   st.border = em.init("border",{x=0,y=0})
+  st.name = "title"
   st.bg = em.init("bg",{x=0,y=0})
   st.dmcutscene = em.init("dmcutscene",{x=230,y=-100})
   st.volcano = em.init("volcano",{x=180,y=-366})
@@ -47,7 +48,7 @@ function st.update()
 
   --st.camera.shake = 0
   if not paused then
-    if maininput:pressed("accept") and st.status == "calm" then
+    if (maininput:pressed("accept") or (ismobile and (lt.x <= 266 and maininput:pressed("touch")))) and st.status == "calm" then
       st.status="eruptstart"
       st.volcano.canim = "erupt"
       st.dmcutscene.canim = "grabdrill"
@@ -200,7 +201,7 @@ function st.update()
     
     
     
-    if maininput:pressed("down") and st.status == "calm" then
+    if (maininput:pressed("down") or (ismobile and (lt.x > 266 and maininput:pressed("touch")))) and st.status == "calm" then
       st.status="options"
 
 
@@ -349,6 +350,13 @@ function st.draw()
     end
     love.graphics.setColor(1,1,1)
     love.graphics.printf(st.credits,0,240+st.cy,200,"center",0,2,2)
+    if ismobile then
+      if not st.creditsplaying then
+        love.graphics.draw(sprites.controls,0,st.cy,0,2,2)
+      end
+      
+      
+    end
   end
 
 
