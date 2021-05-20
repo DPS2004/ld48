@@ -1,6 +1,6 @@
 function love.conf(t)
-  release = true
-  platform = "mobile"
+  release = false
+  platform = "pc"
   
   if platform == "mobile" then
     ismobile = true

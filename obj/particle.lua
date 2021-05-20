@@ -17,7 +17,10 @@ local obj = {
 
 function obj.update(dt)
   if not obj.init then
-    if obj.ptype == "rock" then
+    if obj.ptype == "worm" then
+      obj.spr = ez.newanim(templates.particles.worm)
+    end
+    if obj.ptype == "rock" or obj.ptype == "worm" then
       ez.rframe(obj.spr)
       obj.r = math.random(0,3) * 90
     end
@@ -45,7 +48,7 @@ end
 function obj.draw()
   local dx = obj.x+cs.cx+obj.getshake()
   local dy = obj.y+cs.cy+obj.getshake()
-  if obj.ptype == "rock" then
+  if obj.ptype == "rock" or obj.ptype == "worm" then
     ez.draw(obj.spr, dx, dy, math.rad(obj.r),2,2,7,7)
   elseif obj.ptype == "warning" then
     love.graphics.draw(obj.spr, obj.x, obj.y, math.rad(obj.r),2,2,8,8)
@@ -54,7 +57,6 @@ function obj.draw()
   if dx <= -100 or dx >= 500 or dy <= -100 or dy >= 500 then
     if obj.ptype ~= "warning" then
       obj.delete = true
-      print("rock particle destroyed")
     end
   end
   

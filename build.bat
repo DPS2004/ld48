@@ -10,7 +10,7 @@ del apktool.yml
 mkdir assets
 cd..
 
-copy Beatblock.love love_decoded\assets\game.love
+copy Drillmin.love love_decoded\assets\game.love
 echo "TODO: set icon to beatblock icon"
 cd..
 

@@ -7,7 +7,7 @@
 authors = "DPS2004"
 
 # A description of your game. Not used in all builds.
-description = "Block the beats with your paddle!"
+description = "Dig to escape the lava!"
 
 # An email to contact for support or more information. Not used
 # in all builds.
@@ -56,6 +56,10 @@ ignore_list = [
     ".tar.gz$",
     ".love$",
     ".exe$",
+    ".bat$",
+
+    # HTML port
+    ".html$",
 
     # Boon-specific files and directories
     "Boon.toml",

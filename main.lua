@@ -160,7 +160,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
       erupt = ez.newtemplate("title/erupt.png", 32, 8, false),
     },
     particles = {
-      rock = ez.newtemplate("particles/rock.png",14,0,false)
+      rock = ez.newtemplate("particles/rock.png",14,0,false),
+      worm = ez.newtemplate("particles/worm.png",14,0,false)
     },
     worm = ez.newtemplate("worm.png",32,0,false),
     wormsmall = ez.newtemplate("wormsmall.png",16,0,false),
