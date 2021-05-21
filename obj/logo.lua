@@ -49,6 +49,7 @@ function obj.update(dt)
     obj.init = true
     if obj.tiltcontrols then
       table.insert(obj.taglines,"I'm Using Tilt Controls!"
+    end
     obj.cline = obj.taglines[love.math.random(1,#obj.taglines)]
   end
 end
