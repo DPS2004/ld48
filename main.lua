@@ -115,6 +115,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   --load sprites
   sprites = {
     templateguy = love.graphics.newImage("assets/templateguy.png"),
+    arrow = love.graphics.newImage("assets/arrow.png"),
     border = love.graphics.newImage("assets/levelobjects/border.png"),
     rock = love.graphics.newImage("assets/levelobjects/rock.png"),
     booster = love.graphics.newImage("assets/levelobjects/booster.png"),
@@ -324,7 +325,8 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   bs.new("mainstate")
   bs.new("title")
   bs.new("gameover")
-  cs = bs.load("title")
+  bs.new("gyrodebug")
+  cs = bs.load("gyrodebug")
   cs.init()
   
 end
