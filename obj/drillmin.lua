@@ -11,33 +11,55 @@ local obj = {
   scorei=0,
   rockshake = 0,
   myshake = 0,
-  boost = -1
+  boost = -1,
+  joyinit = false
 }
 
 
 function obj.update(dt)
+  if not obj.joyinit then
+    obj.joyinit = true
+    if options.tiltcontrols then
+      obj.joystick = love.joystick.getJoysticks()[1]
+    end
+  end
   obj.myshake = 0
   obj.scoredelay = 8
   obj.canim = "down"
   obj.scorei = obj.scorei + dt
-  if maininput:down("left") then
-    if not options.invertedcontrols then
-      obj.r = obj.r - 2*dt
-      obj.canim = "left"
-    else
-      obj.r = obj.r + 2*dt
-      obj.canim = "right"
+  if not options.tiltcontrols then
+    if maininput:down("left") then
+      if not options.invertedcontrols then
+        obj.r = obj.r - 2*dt
+        obj.canim = "left"
+      else
+        obj.r = obj.r + 2*dt
+        obj.canim = "right"
+      end
     end
-  end
-  if maininput:down("right") then
-    if not options.invertedcontrols then
-      obj.r = obj.r + 2*dt
-      obj.canim = "right"      
-    else
-      obj.r = obj.r - 2*dt
-      obj.canim = "left"
+    
+    
+    
+    if maininput:down("right") then
+      if not options.invertedcontrols then
+        obj.r = obj.r + 2*dt
+        obj.canim = "right"      
+      else
+        obj.r = obj.r - 2*dt
+        obj.canim = "left"
+      end
     end
+  else
+    local oldr = obj.r
+    local rmult = 100
+    if options.invertedcontrols then
+      rmult = -100
+    end
+    obj.r = (obj.joystick:getAxis(1)*rmult + oldr) /2
+    
+    
   end
+  
   obj.boost = obj.boost - dt*0.25
   
   obj.speed = 4

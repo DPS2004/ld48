@@ -10,12 +10,36 @@ function st.init()
   te.play("assets/sounds/intro.ogg","stream","bgm",1,1,function(a) te.playLooping("assets/sounds/intro_loop.ogg","stream","bgm") print("done") end)
   st.logo = em.init("logo",{})
   st.instructions = em.init("instructions",{})
-  st.optionstxt = {
-    loc.get("back"),
-    loc.get("gameplay"),
-    loc.get("audio"),
-    loc.get("credits"),
+  
+  st.optionstext = {
+    main = {
+      loc.get("back"),
+      loc.get("gameplay"),
+      loc.get("audio"),
+      loc.get("credits"),
+    },
+    gameplay = {
+      loc.get("back"),
+      loc.get("invertedcontrols"),
+      loc.get("staticdeltatime"),
+    },
+    audio = {
+      loc.get("back"),
+      loc.get("musicvolume"),
+      loc.get("sfxvolume"),
+    }
   }
+  if ismobile then
+    st.optionstext.gameplay = {
+      loc.get("back"),
+      loc.get("invertedcontrols"),
+      loc.get("staticdeltatime"),
+      loc.get("tiltcontrols")
+    }
+  end
+  st.optionstxt = st.optionstext.main
+    
+  
   st.optionsindex = 1
   st.optionsmenu = 0
   st.on = loc.get("on")
@@ -89,21 +113,14 @@ function st.update()
             if maininput:pressed("accept") then
               st.optionsmenu = 1
               st.optionsindex = 1
-              st.optionstxt = {
-                loc.get("back"),
-                loc.get("invertedcontrols"),
-                loc.get("staticdeltatime"),
-              }
+              st.optionstxt = st.optionstext.gameplay
             end
           elseif st.optionsindex == 3 then
             if maininput:pressed("accept") then
               st.optionsmenu = 2
               st.optionsindex = 1
-              st.optionstxt = {
-                loc.get("back"),
-                loc.get("musicvolume"),
-                loc.get("sfxvolume"),
-              }
+              st.optionstxt = st.optionstext.audio
+              
             end
           elseif st.optionsindex == 4 then
             if maininput:pressed("accept") then
@@ -122,12 +139,7 @@ function st.update()
             if maininput:pressed("accept") then
               st.optionsmenu = 0
               st.optionsindex = 1
-              st.optionstxt = {
-                loc.get("back"),
-                loc.get("gameplay"),
-                loc.get("audio"),
-                loc.get("credits"),
-              }
+              st.optionstxt = st.optionstext.main
             end
           elseif st.optionsindex == 2 then
             if maininput:pressed("accept") then
@@ -137,18 +149,17 @@ function st.update()
             if maininput:pressed("accept") then
               acdelt = not acdelt
             end
+          elseif st.optionsindex == 4 and ismobile then
+            if maininput:pressed("accept") then
+              options.tiltcontrols = not options.tiltcontrols
+            end
           end
         elseif st.optionsmenu == 2 then
           if st.optionsindex == 1 then
             if maininput:pressed("accept") then
               st.optionsmenu = 0
               st.optionsindex = 1
-              st.optionstxt = {
-                loc.get("back"),
-                loc.get("gameplay"),
-                loc.get("audio"),
-                loc.get("credits"),
-              }
+              st.optionstxt = st.optionstext.main
             end
           elseif st.optionsindex == 2 then
             if maininput:pressed("left") then
@@ -185,12 +196,7 @@ function st.update()
         st.optionsindex = 1
         st.optionsmenu = 0
         st.status = "calm"
-        st.optionstxt = {
-          loc.get("back"),
-          loc.get("gameplay"),
-          loc.get("audio"),
-          loc.get("credits"),
-        }
+        st.optionstxt = st.optionstext.main
         flux.to(st.logo,60,{y=0}):ease("outQuint"):oncomplete(function() end)
         flux.to(st.instructions,60,{y=0}):ease("outQuint"):oncomplete(function() end)
         flux.to(st,120,{cy=240}):ease("outQuint"):oncomplete(function()  end)
@@ -313,6 +319,22 @@ function st.draw()
         
         love.graphics.printf(txt,44,0+st.cy+ st.optionsindex*20,148,"right",0,2,2)
         love.graphics.printf(st.warning,0,196,200,"center",0,2,2)
+      elseif st.optionsindex == 4 then
+
+        local txt = st.off
+        if options.tiltcontrols then
+          txt = st.on
+        end
+        love.graphics.setColor(0,0,0)
+        for i=-1,1 do
+          for j=-1,1 do
+            love.graphics.printf(txt,44+i*2,j*2+st.cy+ st.optionsindex*20,148,"right",0,2,2)
+          end
+        end
+        
+        love.graphics.setColor(1,1,1)
+        
+        love.graphics.printf(txt,44,0+st.cy+ st.optionsindex*20,148,"right",0,2,2)
 
       end
     elseif st.optionsmenu == 2 then

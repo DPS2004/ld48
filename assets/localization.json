@@ -22,7 +22,9 @@
   "staticdeltatime": {
     "en": "static deltatime",
   },
-  
+  "tiltcontrols": {
+    "en": "tilt controls",
+  },
   "warning": {
     "en": "WARNING: Turning this option off may cause the game to behave strangely!",
   },

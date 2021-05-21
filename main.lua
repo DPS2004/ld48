@@ -172,6 +172,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   
   options = {
     invertedcontrols = false,
+    tiltcontrols = false,
     volume = {
       bgm = 1,
       sfx = 1
