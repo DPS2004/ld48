@@ -12,10 +12,14 @@ function love.load()
   -- font is https://tepokato.itch.io/axolotl-font
   -- https://www.dafont.com/digital-disco.font
   
+  -- set rescaling filter
+  love.graphics.setDefaultFilter("nearest", "nearest")
   font = love.graphics.newFont("assets/Axmolotl.ttf", 16)
-  font:setFilter("nearest", "nearest",0)
+  if platform ~= "3ds" then
+    font:setFilter("nearest", "nearest",0)
+  end
 
-love.graphics.setDefaultFilter("nearest", "nearest")
+  love.graphics.setDefaultFilter("nearest", "nearest")
   love.graphics.setFont(font)
   -- accurate deltatime
   acdelt = true
@@ -86,12 +90,14 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   
 
   
-  -- set rescaling filter
-  love.graphics.setDefaultFilter("nearest", "nearest")
+  
   
   -- set line style
-  love.graphics.setLineStyle("rough")
-  love.graphics.setLineJoin("miter")
+  if not platform == "3ds" then
+    love.graphics.setLineStyle("rough")
+    love.graphics.setLineJoin("miter")
+  end
+  
   
   -- send these arguments to push (or dont cause push is kinda strange sometimes)
   push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {
@@ -100,7 +106,9 @@ love.graphics.setDefaultFilter("nearest", "nearest")
     pixelperfect = true
     })
   push:setBorderColor{0,0,0}
-  love.window.setTitle(gamename)
+  if not platform == "3ds" then
+    love.window.setTitle(gamename)
+  end
   paused = false
   
   if not tatemode then
@@ -145,7 +153,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
       left = ez.newtemplate("player/left.png",31,2,true),
       right = ez.newtemplate("player/right.png",31,2,true),
       wateringcan = ez.newtemplate("player/wateringcan.png",64,2,true),
-      grabdrill = ez.newtemplate("player/grabdrill.png",64,8,false),
+      grabdrill = ez.newtemplate("player/grabdrill.png",64,8,false,0,33,20),
     },
     
     drillminwhite = {
@@ -153,7 +161,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
       left = ez.newtemplate("player_white/left.png",31,0,false), 
       right = ez.newtemplate("player_white/right.png",31,0,false),
       wateringcan = ez.newtemplate("player_white/wateringcan.png",64,0,false),
-      grabdrill = ez.newtemplate("player_white/grabdrill.png",64,0,false),
+      grabdrill = ez.newtemplate("player_white/grabdrill.png",64,0,false,0,33,20),
     },
 
     volcano = {
@@ -327,7 +335,7 @@ love.graphics.setDefaultFilter("nearest", "nearest")
   bs.new("title")
   bs.new("gameover")
   bs.new("gyrodebug")
-  cs = bs.load("gyrodebug")
+  cs = bs.load("title")
   cs.init()
   
 end
@@ -337,10 +345,11 @@ function love.textinput(t)
 end
 
 function love.update(d)
+  
   maininput:update()
   lovebird.update()
   if frameadvance == false or maininput:pressed("k1") or maininput:down("k2") then
-    
+    debugprint = true
     mouseX, mouseY = love.mouse.getPosition()
     mouseX = mouseX / 2
     mouseY = mouseY / 2
@@ -362,6 +371,7 @@ end
 
 function love.draw()
   cs.draw()
+  debugprint = false
 end
 
 

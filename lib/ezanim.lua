@@ -1,6 +1,6 @@
 local ezanim = {}
 -- ez.newtemplate(path to image file,width,frames per advance,loops(boolean), border size(0 by default))
-function ezanim.newtemplate(png,w,s,l,b)
+function ezanim.newtemplate(png,w,s,l,b,h,frames)
   local t = {}
   t.w = w
   t.s = s
@@ -10,14 +10,15 @@ function ezanim.newtemplate(png,w,s,l,b)
   else
     t.l = l
   end
+  t.name = png
   t.img = love.graphics.newImage("assets/" .. png)
-  t.h = t.img:getHeight()
-  t.frames = t.img:getWidth()/(w+t.b)
+  t.h = h or t.img:getHeight()
+  t.frames = frames or t.img:getWidth()/(w+t.b)
   t.quads = {}
   local offset = 0
   for i=0,t.frames - 1 do
     
-    quad = love.graphics.newQuad(i * t.w + offset, 0 , t.w, t.h, t.img:getWidth(), t.img:getHeight())
+    quad = love.graphics.newQuad((i * t.w + offset)%t.img:getWidth(), math.floor((i * t.w + offset)/t.img:getWidth())*t.h , t.w, t.h, t.img:getWidth(), t.img:getHeight())
     table.insert(t.quads, quad)
     offset = offset + t.b
   end
@@ -76,7 +77,13 @@ function ezanim.draw(a,x,y,r,sx,sy,ox,oy,kx,ky)
       love.graphics.draw(a.temp.img[i],quad,x,y,r,sx,sy,ox,oy,kx,ky)
     end
   else
+--    if debugprint and a.temp.name == "player/grabdrill.png" then
+--      print("drawing frame " .. a.f .. " of " .. a.temp.name .. " of total frames " .. a.temp.frames)
+--      print(quad:getViewport())
+--    end
+    
     love.graphics.draw(a.temp.img,quad,x,y,r,sx,sy,ox,oy,kx,ky)
+    
   end
 end
 

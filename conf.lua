@@ -1,6 +1,6 @@
 function love.conf(t)
   release = false
-  platform = "mobile"
+  platform = "3ds"
   
   if platform == "mobile" then
     ismobile = true
